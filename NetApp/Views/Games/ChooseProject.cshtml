@@ -1,0 +1,51 @@
+﻿@model NetApp.Models.Project
+
+@{
+    ViewBag.Title = "Выбор проекта ";
+}
+
+<div class="container nopadding">
+    <h2 class="text-primary">Выберите проект</h2>
+    <br />
+
+    @using (Html.BeginForm("AddParticipant", "Games", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.Id)
+
+            <input type="hidden" value="@ViewBag.gameCode" name="gameCode" />
+
+            <p>
+
+                @for (int i = 0; i < @ViewBag.projects.Count; i++)
+                {
+                    <label>
+                        <input name="assignedProject" type="radio" value="@ViewBag.projects[i].Id" class="text-secondary" checked/>
+                        @ViewBag.projects[i].Name
+                    </label>
+                    <br />
+                }
+
+            </p>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Подтвердить" class="btn btn-success btn-block submitBtn" />
+                </div>
+            </div>
+            @Html.ActionLink("Назад", "Index", "Home")
+        </div>
+    }
+
+</div>
+
+<style>
+    .submitBtn {
+        min-width: 100%;
+    }
+</style>

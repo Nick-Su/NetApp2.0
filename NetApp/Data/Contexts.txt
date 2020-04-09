@@ -1,0 +1,11 @@
+﻿========= Database Context==============
+enable-migrations -ContextTypeName DatabaseContext -MigrationsDirectory Migrations\Project
+
+add-migration -ConfigurationTypeName NetApp.Migrations.Project.Configuration "InitialCreate"
+update-database -ConfigurationTypeName NetApp.Migrations.Project.Configuration
+
+========= ApplicationDbContext ============== For UserAccpunts
+enable-migrations -ContextTypeName ApplicationDbContext -MigrationsDirectory Migrations\Identity
+
+add-migration -ConfigurationTypeName NetApp.Migrations.Identity.Configuration "InitialIdentity"
+update-database -ConfigurationTypeName NetApp.Migrations.Identity.Configuration

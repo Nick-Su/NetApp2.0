@@ -1,0 +1,35 @@
+﻿@model NetApp.Models.ExternalLoginConfirmationViewModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+<h2 class="text-primary">Завершение регистрации</h2>
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <p class="text-info">
+        Вы успешно авторизовались с помощью <strong>@ViewBag.LoginProvider</strong>.
+        Пожалйуста, введите Email для этого приложения и нажмите кнопку "Зарегистрироваться" для заврешения процесса авторизации.
+    </p>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Зарегистрироваться" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

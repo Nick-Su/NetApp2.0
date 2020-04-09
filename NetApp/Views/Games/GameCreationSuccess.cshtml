@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Игра успешно создана";
+}
+
+
+
+<div class="container">
+
+    <div class="text-left">
+        <h2>Игра успешно создана!</h2>
+    </div>
+    <br />
+
+    <div class="text-center">
+        <h1><span class="code">@ViewBag.gameId</span></h1>
+    </div>
+
+    <br /><br />
+    <div class="text-justify">
+        <p>Сообщите этот код другим игрокам, чтобы они смогли подключиться к этой игре.</p>
+    </div>
+    <br />
+
+    <div class="col-md-10 col-sm-11 col-xs-12">
+        @Html.ActionLink("Назад ", "Index", "Home", null, new { @class = "btn btn-default btn-block" })
+    </div>
+</div>
+
+<style>
+    .code {
+        background-color: #fcfcfc;
+        padding: 0.5em 1.5em 0.5em 1.5em;
+    }
+</style>

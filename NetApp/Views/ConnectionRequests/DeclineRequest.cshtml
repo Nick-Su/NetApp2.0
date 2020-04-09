@@ -1,0 +1,73 @@
+﻿@model NetApp.Models.ConnectionRequest
+
+@{
+    ViewBag.Title = "Отклонить запрос";
+}
+
+<h2>Вы уверены, что хотите отклонить этот запрос?</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <input type="hidden" name="after" value="" id="after"/>
+
+        @Html.HiddenFor(model => model.GameId)
+        @Html.HiddenFor(model => model.ConnectionRequestId)
+
+        @Html.HiddenFor(model => model.SenderResourceRequest)
+        @Html.HiddenFor(model => model.SenderGivenBenefit)
+        @Html.HiddenFor(model => model.SenderProjectId)
+
+        @Html.HiddenFor(model => model.ConnectionType)
+        @Html.HiddenFor(model => model.RecieverProjectId)
+        @Html.HiddenFor(model => model.IsApproved)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-danger btn-group-justified btn-lg">Отклонить</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="backToList"></div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#IsApproved").val(2);
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('gid');
+        let gid = searchParams.get('gid');
+        searchParams.has('toLeaderBoard');
+        let tlb = searchParams.get('toLeaderBoard');
+
+        $("#txtGroupName").val(gid);
+
+        let searchParamsAfter = new URLSearchParams(window.location.search);
+        searchParamsAfter.has('after');
+        let after = searchParamsAfter.get('after');
+        if (after != "null") {
+            $("#after").val(after);
+        } else {
+            after = 0;
+        }
+
+        let urlBack;
+        let className = "btn btn-sm btn-default btn-block";
+
+        if (tlb != "null") {
+            urlBack = "/ConnectionRequests/Index?gid=" + gid + "&toLeaderBoard=" + tlb + "&after=" + after;
+        } else {
+            urlBack = "/ConnectionRequests/Index";
+        }
+        let btnBack = '<a href="' + urlBack + '" class="' + className + '" >Назад</a>';
+        $(".backToList").append(btnBack);
+
+    });
+</script>

@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Проверьте входящие запросы";
+}
+
+<h2 class="text-primary animated fadeInRight">Нетворкинг завершен.</h2>
+<h3 class="text-info animated fadeInLeft">Проверьте входящие запросы</h3>
+<br />
+<div class="checkBtn"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        let searchParamsGid = new URLSearchParams(window.location.search);
+        searchParamsGid.has('gid');
+        let gid = searchParamsGid.get('gid');
+
+        let backTime = 300;
+        let url = '/ConnectionRequests/Index/?gid=' + gid + '&toLeaderBoard=1' + '&after=' + backTime;
+        let clname = 'btn btn-default btn-block';
+        let text = 'Проверить запросы';
+        let html = '<a href="' + url + '" class="' + clname + '">' + text + '</a>';
+        $('.checkBtn').html(html);
+
+        var timeleft = 5;
+
+        var downloadTimer = setInterval(function () {
+            timeleft--;
+            //console.log(timeleft);
+            if (timeleft <= 0) {
+                clearInterval(downloadTimer);
+                window.location.href = url;   
+            } 
+                
+        }, 1000);
+    });
+</script>

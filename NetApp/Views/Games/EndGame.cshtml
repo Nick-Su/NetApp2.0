@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Нетворкинг завершен";
+}
+
+<h2 class="text-primary">Нетворкинг завершен. Ваши результаты:</h2>
+<hr />
+<div class="nopadding ratingBlock"></div>
+
+<div class="commonLinkInfoBlock"></div>
+
+<div class="leaderBoardBlock"></div>
+
+<div class="">
+    <a href="/Connections/MyConnections" class="btn btn-block btn-default">Визуализация сделок</a>
+    <a href="/Home/Index" class="btn btn-block btn-default">На Главную</a>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('gid');
+        let gid = searchParams.get('gid');
+
+
+        $('.leaderBoardBlock').html('<img src="/images/ajax-loader-thin.gif" class="bigLoader"/>');
+        GetUserRating();
+        GetUserLeaderBoard(gid);
+
+        function GetUserRating() {
+            return $.ajax({
+                type: "GET",
+                url: '@Url.Action("CalculateUserRating", "UserRatings")',
+                contentType: "application/json; charset=utf-8",
+                data: { gid: gid },
+                dataType: "json",
+                success: handleData
+            });
+        }
+
+        function handleData(json) {
+
+            buildRatioBlock();
+
+            let trs = 0;
+            let trr = 0;
+            if (json == 0) {
+                $("#earnedInGame").text("0");
+            } else {
+                let rating = JSON.parse(json);
+                $("#ratio").append(rating[0].oldRating);
+                $("#earnedInGame").text(rating[0].ratingAfterGame);
+
+                trs = rating[0].totalRequestSend;
+                trr = rating[0].totalRequestRecieved;
+            }
+            
+            buildCommonLinkStatsBlock();
+
+            $("#totalRequestSend").append(trs);
+            $("#totalRequestRecieved").append(trr);
+
+            Count();
+        }
+
+        function buildRatioBlock() {
+            let html = '<h3 class="' + "text-info animated fadeInLeft" + '">Ваш рейтинг: <b><span id="' + "ratio" + '" class="' + "text-primary Count" + '"></span></b> <span class="' + "text-success" + '">(+<span id="' + "earnedInGame" + '" class="' + "Count" + '"></span> за эту сессию)</span></h3><hr />';
+            $(".ratingBlock").html(html);
+        }
+
+        function buildCommonLinkStatsBlock() {
+            html = '<h4 class="' + "text-info animated fadeInLeft" + '">Отправлено Вами запросов: <b><span class="' + "text-primary" + '" id="' + "totalRequestSend" + '"></span></b></h4>';
+            html += '<h4 class="' + "text-info animated fadeInLeft" + '">Адресовано Вам запросов: <b><span class="' + "text-primary" + '" id="' + "totalRequestRecieved" + '"></span></b></h4><hr />';
+            $(".commonLinkInfoBlock").html(html);
+        }
+
+        function Count() {
+            $('.Count').each(function () {
+                var $this = $(this);
+                jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+                    duration: 1500,
+                    easing: 'swing',
+                    step: function () {
+                        $this.text(Math.ceil(this.Counter));
+                    }
+                });
+            });
+        }
+    });
+</script>
+
+@Scripts.Render("~/Scripts/common/main.js")

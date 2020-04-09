@@ -1,0 +1,80 @@
+﻿@model NetApp.Models.Project
+
+@{
+    ViewBag.Title = "О проекте";
+}
+
+<h2 class="text-primary">О проекте</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Whom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Whom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.What)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.What)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Feature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd> *@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Назад", "MyConnections", "Connections", null, new { @class = "btn btn-default col-xs-12" })
+</p>

@@ -1,0 +1,232 @@
+﻿
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.project-wrap {
+    background: #00B4DB; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #a1c4fd, #c2e9fb); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin-top: 2em;
+}
+
+.projectInfo {
+    padding: 5px 10px 0 10px;
+    font-size: 14px;
+}
+
+.projectInfo span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.maxMinWidth {
+    min-width: 100%;
+}
+
+
+/*
+
+    Connection
+
+*/
+
+.link {
+    fill: none;
+    stroke: #666;
+    stroke-width: 1.5px;
+}
+
+.node circle {
+    fill: #ccc;
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+text {
+    font: 10px sans-serif;
+    pointer-events: none;
+}
+
+a.dropdown-toggle {
+    min-width: 80px;
+}
+
+.codeBtn {
+    margin-top: 1em;
+    margin-left: 8%;
+}
+
+.targetProject {
+    background: #7474BF; 
+    background: -webkit-linear-gradient(to right, #348AC7, #7474BF); 
+    background: linear-gradient(to right, #348AC7, #7474BF); 
+}
+
+
+
+/* Index */
+
+.jumbotron {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    padding-bottom: 7%;
+    height: auto;
+}
+
+
+
+.jumbotron p span {
+    font-size: 36px;
+}
+
+
+/*
+
+    TableBoard
+
+*/
+
+.first {
+    font-size: 22px;
+    color: #ffd700;
+}
+
+.second {
+    font-size: 22px;
+    color: #aaa9ad;
+}
+
+.third {
+    font-size: 22px;
+    color: #cd7f32;
+}
+
+.highlightUser {
+    border: 2px solid #84d0e6;
+}
+
+.highlightUser td {
+    background-color: #f6fbfc;
+}
+
+/*
+
+    Notification
+
+*/
+
+.dropNotification {
+    color: white;
+}
+
+.divider {
+    margin-left: -5.5em;
+    padding: 0px 0px 5px 0px;
+    border-bottom: 2px solid white;
+    width: 90%;
+}
+
+.notifWrap a {
+    color: white;
+}
+
+.notifWrap a:hover {
+    text-decoration: none;
+}
+
+
+@media (max-width: 425px) {
+    .notifWrap {
+        margin-left: -5.5em;
+    }
+}
+
+
+/*
+    Preloaders
+*/
+
+.bigLoader {
+    padding: 5px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+}
+
+.pageWaitRedirectLoader {
+    display: block;
+    margin: auto;
+    margin-top: 25%;
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+}
+
+
+@keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.animate-flicker {
+    -webkit-animation: flickerAnimation 2.0s infinite;
+    -moz-animation: flickerAnimation 2.0s infinite;
+    -o-animation: flickerAnimation 2.0s infinite;
+    animation: flickerAnimation 2.0s infinite;
+}

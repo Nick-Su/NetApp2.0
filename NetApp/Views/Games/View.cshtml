@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NetApp.Models.TablePlayer>
+
+@{
+    ViewBag.Title = "Игровой стол";
+}
+
+<h2>Вы подключены к игровому столу # @ViewBag.tableNumber</h2>
+
+<h3>Проекты участников</h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Table.TableId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectParticipantId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Table.TableId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectParticipantId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Ожидание начала игры";
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+}
+
+<br />
+<h2 class="text-primary">Ожидание начала игры</h2>
+
+<br />
+<p class="text-info">Игра начнется как только ведущий активирует игру.</p>
+
+<hr />
+<div>
+    <h4 class="text-info">Как происходит нетворкинг?</h4>
+    <p>Нетворкинг состоит из нескольких раундов.</p>
+    <p>Каждый раунд состоит из нескольких этапов, ограниченных по времени:</p>
+    <ul>
+        <li><b>Перенаправление в группу.</b> На этом этапе Вы должны перейти в группу, номер которой будет указан в заголовке.</li>
+        <li><b>Знакомство.</b> Участники подгруппы представляются друг другу и рассказывают о своих проектах.</li>
+        <li><b>Нетворкинг.</b> Участники создают связи между проектами.</li>
+    </ul>
+    <p>В конце нетворкинга Вам будет предоставлено время для подтверждения связей между проектами.</p>
+</div>
+
+
+<input type="hidden" id="txtGroupName" value="" />
+<input type="hidden" id="txtUserName" value="@User.Identity.GetUserName()" />
+<input type="hidden" class="pageName" value="waitRoom" />
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('gid');
+        let gid = searchParams.get('gid');
+
+     
+        $("#txtGroupName").val(gid);
+
+    });
+
+</script>

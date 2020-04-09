@@ -1,0 +1,39 @@
+﻿@model IEnumerable<NetApp.Models.Table>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Game.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TableNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Game.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TableNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TableId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TableId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TableId })
+        </td>
+    </tr>
+}
+
+</table>

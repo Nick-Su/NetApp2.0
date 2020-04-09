@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Знакомство участников";
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+    <script src="~/Scripts/signalr/common.js"></script>
+    <script src="~/Scripts/signalr/subgroup.js"></script>
+}
+
+<div class="container nopadding">
+
+    <input type="hidden" class="pageName" value="introduction" />
+
+    <input type="hidden" class="group-num" value="" />
+    <input type="hidden" class="tid" value="" />
+
+    <h3 class="text-primary text-left">Группа <b><span class="text-danger groupNum"></span></b> Время познакомиться!</h3>
+    <hr />
+
+    @Html.Partial("_StatusBar")
+
+    <div class="col-xs-12 nopadding">
+        <div class="col-xs-10 nopadding">
+            <h4 class="text-info">До начала нетворкинга осталось:</h4>
+        </div>
+        <div class="col-xs-2 nopadding">
+            <h4 class="text-secondary">
+                <span id="timer-mins" class="itemValue text-danger"></span><span id="timer" class="itemValue text-danger"></span>
+            </h4>
+        </div>
+    </div>
+
+    <br /><br />
+    <div class="nopadding">
+        <h6 class="text-secondary">У вас есть <span id="timeToPlayer"></span> сек. чтобы представиться и коротко рассказать о своем проекте.</h6>
+    </div>
+
+    <hr class="nopadding" />
+    <div class="wait-other-warning"></div>
+
+    <div class="row" id="speaker-info">
+        <div class="col-xs-12">
+            <h4 class="text-info now-speak-title">Сейчас представляется:</h4>
+        </div>
+
+        <div class="col-xs-9 ">
+            <h5 class="text-success currentSpeaker"></h5>
+        </div>
+
+        <div class="col-xs-3 ">
+            <h4 class="text-secondary">
+                <span id="introTimer" class="itemValue text-danger"></span>
+            </h4>
+        </div>
+        <hr class="nopadding" />
+    </div>
+
+    <!-- Список участников, ожидающих выступления -->
+    <div class="col-xs-12 nopadding waiters-wrap">
+        <h5 class="text-info wait-title">Ожидают очереди:</h5>
+        <div class="table-waiters-wrap"></div>
+    </div>
+
+    <hr class="nopadding" />
+  
+    <div class="nopadding">
+        <h4 class="text-info">В приветственной речи не забудьте упомянуть:</h4>
+        <ul>
+            <li>Своё Ф.И.О.</li>
+            <li>Основные направления деятельности.</li>
+            <li>Ваш текущий проект и его стадию.</li>
+            <li>Что <b>нужно</b> проекту?</li>
+            <li>Что Вы можете <b>предложить другим</b>?</li>
+        </ul>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    let searchParamsGid = new URLSearchParams(window.location.search);
+    searchParamsGid.has('gid');
+    let gid = searchParamsGid.get('gid');
+ 
+
+    $(document).ready(function () {
+
+        $("#txtGroupName").val(gid);
+
+        GetTimeToPersonIntroduction();
+
+        function GetTimeToPersonIntroduction() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetTimeToIntroduction", "Games")',
+                contentType: "application/json; charset=utf-8",
+                data: { gid: gid },
+                dataType: "json",
+                success: handleData,
+                error: error
+            });
+
+            function error() {
+                console.log("Can't get time data");
+            }
+
+            function handleData(json) {
+                var timedata = JSON.parse(json);
+                $("#timeToPlayer").html(timedata);
+            }
+        }
+    });
+
+</script>
+
+<style>
+    h3 {
+        font-size: 1.5em;
+    }
+
+    h5 {
+        font-size: 1.15em;
+    }
+</style>

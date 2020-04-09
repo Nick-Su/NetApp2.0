@@ -1,0 +1,68 @@
+﻿@model NetApp.Models.Project
+
+@{
+    ViewBag.Title = "Удалить проект";
+}
+
+<h2>Удаление проекта</h2>
+
+<h3>Вы действительно хотите удалить этот проект?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Whom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Whom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.What)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.What)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Feature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </dt>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-danger" /> |
+            @Html.ActionLink("К списку проектов", "Index")
+        </div>
+    }
+</div>

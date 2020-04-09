@@ -1,0 +1,74 @@
+﻿@model NetApp.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumPlayers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumPlayers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumTables)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumTables)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumTacts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumTacts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TactDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TactDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,287 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model NetApp.Models.ConnectionRequest
+
+@{
+    ViewBag.Title = "Входящий запрос на связь";
+}
+
+
+
+@*<input type="hidden" id="txtGroupName" value="" />
+    <input type="hidden" id="txtUserName" value="@User.Identity.GetUserName()" />*@
+
+<input type="hidden" class="pageName" value="trustedPage" />
+
+<h2 class="text-primary">Входящий запрос на связь</h2>
+
+<hr>
+@Html.Partial("_StatusBar")
+
+<h4 class="text-info">Между проектом:</h4>
+<div id="senderProjectName" class="text-secondary"></div>
+<h4 class="text-info">И проектом:</h4>
+<div id="recieverProjectName" class="text-secondary"></div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ConnectionRequestId)
+        @Html.HiddenFor(model => model.SenderResourceRequest)
+        @Html.HiddenFor(model => model.SenderGivenBenefit)
+        @Html.HiddenFor(model => model.GameId)
+
+        @Html.HiddenFor(model => model.ConnectionType)
+        @Html.HiddenFor(model => model.RecieverProjectId)
+        @Html.HiddenFor(model => model.SenderProjectId)
+        @*@Html.HiddenFor(model => model.IsApproved)*@
+
+        <input type="hidden" name="IsApproved" id="IsApproved" value="1" />
+
+        <input type="hidden" name="SenderIsRead" value="0" id="SenderIsRead" />
+        <input type="hidden" name="RecieverIsRead" value="1" id="RecieverIsRead" />
+
+        <input type="hidden" name="SenderIsRead" value="0" id="SenderIsRead" />
+
+        <input type="hidden" name="after" value="0" id="after" />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConnectionType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ConnectionType, new { htmlAttributes = new { @class = "form-control maxMinWidth", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.ConnectionType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SenderResourceRequest, "У Вас запрашивают:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.SenderResourceRequest, new { htmlAttributes = new { @class = "form-control maxMinWidth", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.SenderResourceRequest, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SenderGivenBenefit, "Вам предлагают:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SenderGivenBenefit, new { htmlAttributes = new { @class = "form-control maxMinWidth", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.SenderGivenBenefit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.SenderProjectId, new { htmlAttributes = new { @class = "form-control" } })
+
+        <hr />
+        <!-- Need types  -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.RecieverGetResource, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="givenNeedType">
+                @Html.DropDownList("NeedTypeList", null, htmlAttributes: new { @class = "form-control selectNeedType maxMinWidth" })
+            </div>
+
+            <div class="customNeedInputWrap">
+                <div class="col-md-10" id="userNeedType">
+                    @Html.EditorFor(model => model.RecieverGetResource, new { htmlAttributes = new { @class = "form-control maxMinWidth" } })
+                    @Html.ValidationMessageFor(model => model.RecieverGetResource, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group btnShowCustomNeedFieldWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowCustomNeedField">Другое</button>
+            </div>
+        </div>
+
+        <div class="form-group btnShowNeedListWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowNeedList">Список ресурсов</button>
+            </div>
+        </div>
+
+
+        <!-- Получаемая польза -->
+        <!-- Benefit types  -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.RecieverGetBenefit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="givenBenefitType">
+                @Html.DropDownList("BenefitTypeList", null, htmlAttributes: new { @class = "form-control selectBenefitType maxMinWidth" })
+            </div>
+
+            <div class="customBenefitInputWrap">
+                <div class="col-md-10" id="userBenefitType">
+                    @Html.EditorFor(model => model.RecieverGetBenefit, new { htmlAttributes = new { @class = "form-control maxMinWidth" } })
+                    @Html.ValidationMessageFor(model => model.RecieverGetBenefit, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group btnShowCustomBenefitFieldWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowCustomBenefitField">Другое</button>
+            </div>
+        </div>
+
+        <div class="form-group btnShowBenefitListWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowBenefitList">Список польз</button>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row nopadding">
+            <div class="col-xs-2">
+                <i class="fa fa-exclamation-triangle text-danger warning-sign"></i>
+            </div>
+            <div class="col-xs-10">
+                <h6 class="text-warning text-justify"> При подтверждении запроса Ваши контакты будут доступны отправитлю запроса.</h6>
+            </div>
+
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn btn-danger col-xs-6 decline">Отклонить <i class="fa fa-thumbs-down"></i></button>
+                <button type="submit" value="Принять" class="btn btn btn-success col-xs-6">Принять <i class="fa fa-thumbs-up"></i></button>
+            </div>
+        </div>
+
+    </div>
+}
+
+<div class="backToList"></div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".customNeedInputWrap").hide(); 
+        $(".btnShowNeedListWrap").hide(); 
+
+        $("#btnShowCustomNeedField").click(function () {
+            $(".btnShowCustomNeedFieldWrap").hide();
+            $("#givenNeedType").hide();
+            $(".customNeedInputWrap").show();
+            $(".btnShowNeedListWrap").show();
+        });
+
+        $("#btnShowNeedList").click(function () {
+            $(".btnShowCustomNeedFieldWrap").show();
+            $("#givenNeedType").show();
+            $(".btnShowNeedListWrap").hide();
+            $(".customNeedInputWrap").hide();
+        });
+
+        $(".customBenefitInputWrap").hide();
+        $(".btnShowBenefitListWrap").hide(); 
+
+        $("#btnShowCustomBenefitField").click(function () {
+            $(".btnShowCustomBenefitFieldWrap").hide();
+            $("#givenBenefitType").hide();
+            $(".customBenefitInputWrap").show();
+            $(".btnShowBenefitListWrap").show();
+        });
+
+        $("#btnShowBenefitList").click(function () {
+            $(".btnShowCustomBenefitFieldWrap").show();
+            $("#givenBenefitType").show();
+            $(".btnShowBenefitListWrap").hide();
+            $(".customBenefitInputWrap").hide(); 
+
+        });
+
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('gid');
+        let gid = searchParams.get('gid');
+        searchParams.has('toLeaderBoard');
+        let tlb = searchParams.get('toLeaderBoard');
+
+  
+        $("#txtGroupName").val(gid);
+
+        let searchParamsAfter = new URLSearchParams(window.location.search);
+        searchParamsAfter.has('after');
+        let after = searchParamsAfter.get('after');
+        if (after != "null") {
+            $("#after").val(after);
+        } else {
+            after = 0;
+        }
+
+        isOnlyGivenNeedTypes(gid);
+        isOnlyGivenBenefitTypes(gid)
+
+        let urlBack;
+        let className = "btn btn-sm btn-default btn-block";
+
+        if (tlb != "null") {
+            urlBack = "/ConnectionRequests/Index?gid=" + gid + "&toLeaderBoard=" + tlb + "&after=" + after;
+        } else {
+            urlBack = "/ConnectionRequests/Index";
+        }
+
+
+        let btnBack = '<a href="' + urlBack + '" class="' + className + '" >Назад</a>';
+        $(".backToList").append(btnBack);
+
+        let spid = $("#SenderProjectId").val();
+        getName(function (output) {
+            $("#senderProjectName").html(output);
+        }, spid);
+
+        let rpid = $("#RecieverProjectId").val();
+        getName(function (output) {
+            $("#recieverProjectName").html(output);
+        }, rpid);
+
+
+        var selValue = $(".selectNeedType").val();
+        $("#RecieverGetResource").val(selValue);
+
+        $(".selectNeedType").on("change", function () {
+            var selValue = $(".selectNeedType").val();
+            $("#RecieverGetResource").val(selValue);
+        });
+
+        var selValue = $(".selectBenefitType").val();
+        $("#RecieverGetBenefit").val(selValue);
+
+        $(".selectBenefitType").on("change", function () {
+            var selValue = $(".selectBenefitType").val();
+            $("#RecieverGetBenefit").val(selValue);
+        });
+
+        $(".decline").click(function () {
+            $("#IsApproved").val(2);
+        })
+
+    });
+</script>
+
+@section scripts {
+    <script src="~/Scripts/common/projects.js"></script>
+    <script src="~/Scripts/common/connections.js"></script>
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+    <script src="~/Scripts/signalr/common.js"></script>
+}
+
+
+<style type="text/css">
+    .warning-sign {
+        margin-top: 45%;
+        font-size: 2em;
+    }
+
+    h6 {
+        font-size: 13px;
+    }
+</style>

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Melt";
+}
+
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+    <script src="~/Scripts/signalr/common.js"></script>
+}
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <div class="row">
+        <input type="hidden" class="pageName" value="trustedPage" />
+        <div class="col-md-10">
+            <h2 class="text-primary">Что дальше?</h2>
+            <hr />
+
+            <input type="hidden" class="pageName" value="trustedPage" />
+            @Html.Partial("_StatusBar")
+
+            <h3 class="text-info">1. Создайте свой первый проект</h3>
+            <p>Проекты необходимы для построения связей. Заполните минимально необходимую информацию о проекте</p>
+            <p><a class="btn btn-default" href="/projects/create">Создать проект <i class="fa fa-chevron-right text-primary"></i></a></p>
+        </div>
+
+        <div class="col-md-10">
+            <h3 class="text-info">2. Станьте участником нетворкинга</h3>
+            <p>Ваш проект нуждается в ресурсе или может быть полезен другим? Объединитесь с другими проектами.</p>
+            <p><a class="btn btn-default" href="/Games/ConnectToGame">Подключиться к нетворкингу <i class="fa fa-chevron-right text-primary"></i></a></p>
+
+        </div>
+
+        <div class="col-md-10">
+            <h3 class="text-info">3. Проверьте, с кем вы уже сотрудничаете</h3>
+            <p>Все ранее созданные связи проектов отображаются в виде графа. Проверьте, с кем вы же установили контакт.</p>
+            <p><a class="btn btn-default" href="/connections/MyConnections">Проверить связи <i class="fa fa-chevron-right text-primary"></i></a></p>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-12 col-xs-12 jumbotron">
+        <p><span>Melt</span> - это приложение для создания деловых связей.</p>
+        <p>Его особенностью является геймификация и визуализация сети контактов.</p>
+        <p>Присоединяйтесь к сообществу прямо сейчас!</p>
+
+        <div class="col-xs-12">
+            <a href="/Account/Register/" class="btn btn-primary col-xs-12 col-md-4">Создать аккаунт</a>
+        </div>
+        <div class="col-xs-12">
+            <p style="margin-top: 1em;" class="text-left row">Или используйте существующий аккаунт</p>
+
+        </div>
+        <div class="col-xs-12">
+            <a href="/Account/LogIn/" class="btn btn-info col-xs-12 col-md-4">Войти в аккаунт</a>
+        </div>
+        @* <br />
+            <p style="margin-top: 1em;" class="text-left row">Или используйте существующий аккаунт</p>
+             <a href="/Account/LogIn/" class="btn btn-lg btn-info col-xs-12 col-md-4">Войти в аккаунт</a>*@
+    </div>
+}

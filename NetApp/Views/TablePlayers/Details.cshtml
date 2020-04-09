@@ -1,0 +1,35 @@
+﻿@model NetApp.Models.TablePlayer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "PlayRoom";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TablePlayer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Table.TableId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Table.TableId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectParticipantId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectParticipantId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,90 @@
+﻿@model NetApp.Models.ConnectionRequest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ConnectionRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Game.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConnectionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConnectionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SenderResourceRequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SenderResourceRequest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SenderGivenBenefit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SenderGivenBenefit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SenderProjectId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SenderProjectId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecieverGetResource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecieverGetResource)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecieverGetBenefit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecieverGetBenefit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecieverProjectId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecieverProjectId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsApproved)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ConnectionRequestId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

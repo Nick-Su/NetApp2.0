@@ -1,0 +1,41 @@
+﻿@model NetApp.Models.TablePlayer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "PlayRoom";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TablePlayer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Table.TableId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Table.TableId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectParticipantId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectParticipantId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

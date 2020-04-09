@@ -1,0 +1,46 @@
+2020-02-15 14:42:07,675  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:07,707  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:09,407  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:09,961  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:10,129  ERROR Argument cannot be null or empty
+Имя параметра: groupName
+2020-02-15 14:42:12,455  DEBUG TimerHub ShowTotalTactNum()
+2020-02-15 14:42:12,636  ERROR Ссылка на объект не указывает на экземпляр объекта.
+2020-02-15 14:42:13,933  DEBUG Connections MyConnections()
+2020-02-15 14:42:15,572  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:15,591  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:17,559  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:17,802  ERROR Argument cannot be null or empty
+Имя параметра: groupName
+2020-02-15 14:42:17,844  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:18,233  DEBUG Project GetProjectNameById()
+2020-02-15 14:42:18,344  DEBUG Project GetProjectNameById()
+2020-02-15 14:42:18,470  DEBUG Project GetProjectNameById()
+2020-02-15 14:42:18,575  DEBUG Project GetProjectNameById()
+2020-02-15 14:42:18,701  DEBUG Project GetProjectNameById()
+2020-02-15 14:42:18,803  DEBUG Project GetProjectNameById()
+2020-02-15 14:42:20,279  DEBUG TimerHub ShowTotalTactNum()
+2020-02-15 14:42:20,457  ERROR Ссылка на объект не указывает на экземпляр объекта.
+2020-02-15 14:42:22,779  DEBUG TimerHub ShowTotalTactNum()
+2020-02-15 14:42:22,913  ERROR Ссылка на объект не указывает на экземпляр объекта.
+2020-02-15 14:42:24,396  DEBUG Project Node Details()
+2020-02-15 14:42:25,638  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:25,716  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:54,646  DEBUG Connections MyConnections()
+2020-02-15 14:42:57,377  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:57,408  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:59,067  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:59,334  ERROR Argument cannot be null or empty
+Имя параметра: groupName
+2020-02-15 14:42:59,632  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:42:59,812  DEBUG Project GetProjectNameById()
+2020-02-15 14:42:59,923  DEBUG Project GetProjectNameById()
+2020-02-15 14:43:00,034  DEBUG Project GetProjectNameById()
+2020-02-15 14:43:00,161  DEBUG Project GetProjectNameById()
+2020-02-15 14:43:00,272  DEBUG Project GetProjectNameById()
+2020-02-15 14:43:00,383  DEBUG Project GetProjectNameById()
+2020-02-15 14:43:01,777  DEBUG TimerHub ShowTotalTactNum()
+2020-02-15 14:43:01,926  ERROR Ссылка на объект не указывает на экземпляр объекта.
+2020-02-15 14:43:02,626  DEBUG Project Node Details()
+2020-02-15 14:43:03,778  DEBUG Games BackToGame()[JSON]
+2020-02-15 14:43:03,778  DEBUG Games BackToGame()[JSON]

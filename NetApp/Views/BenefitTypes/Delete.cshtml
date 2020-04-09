@@ -1,0 +1,55 @@
+﻿@model NetApp.Models.BenefitType
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить этот тип?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container nopadding">
+            <div class="form-actions no-color col-xs-6 nopadding">
+                <input type="submit" value="Удалить" class="btn btn-danger btn-block" />
+            </div>
+
+            <div class="col-xs-6">
+                <div id="addBackLink"></div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    let searchParams = new URLSearchParams(window.location.search);
+    searchParams.has('gid');
+    let gid = searchParams.get('gid');
+
+    let searchGameCode = new URLSearchParams(window.location.search);
+    searchGameCode.has('gameCode');
+    let gameCode = searchParams.get('gameCode');
+
+    let classBackLink = "btn btn-primary btn-block";
+    let backLink = '<a href="' + "/BenefitTypes/Index/?gameCode=" + gameCode + "&gid=" + gid + '" class="' + classBackLink + '">Назад, к спиcку</a>';
+    $("#addBackLink").append(backLink);
+
+    $("#gid").val(gid);
+    $("#gameCode").val(gameCode);
+</script>

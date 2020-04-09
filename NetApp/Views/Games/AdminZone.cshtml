@@ -1,0 +1,270 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Администрирование игры";
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/admin.js"></script>
+}
+
+<div class="container nopadding">
+    <div class="text-left">
+        <h3 class="text-primary mainTitle">Нетворкинг успешно создан</h3>
+    </div>
+    <hr />
+
+    <input type="hidden" id="txtGroupName" value="" />
+    <input type="hidden" id="txtUserName" value="@User.Identity.GetUserId()" />
+
+    <h4 class="text-left text-secondary disclaimer">Окончательные результаты будут готовы через <span class="itemValue text-danger timer"></span></h4>
+
+    <div class="leaderBoardBlock">Получение данных...</div>
+
+    <div class="container code-block nopadding">
+        <div class="col-xs-5 text-left nopadding">
+            <h4 id="code-title" class="text-info">Код игры: </h4>
+        </div>
+
+        <div class="col-xs-7">
+            <h1><span class="code text-dark" id="codeText">@ViewBag.gameCode</span></h1>
+        </div>
+    </div>
+
+    <div class="text-justify code-block">
+        <br /><br />
+        <p class="text-secondary">Сообщите этот код участникам</p>
+        <hr />
+    </div>
+
+    <div class="text-center tuneGameLists"></div>
+    <hr />
+
+    <div class="row game-data nopadding">
+        <h5 class="text-secondary">Игроков подключилось: <span id="playerNum" class="itemValue text-primary">0</span></h5>
+    </div>
+
+    <div class="gameInfo nopadding">
+        <div class="col-xs-7 nopadding">
+            <h5 class="text-secondary">Текущий раунд: <span id="currentTact" class="itemValue text-primary currentTact"></span></h5>
+        </div>
+
+        <div class="col-xs-12 nopadding">
+            <h5 class="text-secondary">Текущий этап: <b><span class="currentStage text-primary"></span></b></h5>
+        </div>
+
+        <div class="col-xs-10 nopadding">
+            <h5 class="text-secondary">
+                Время окончания: <span class="itemValue text-danger timer"></span>
+            </h5>
+        </div>
+
+        <br />
+    </div>
+
+    <div class="gameActive">
+        <button class="btn btn-lg  btn-danger btn-block" disabled>Игра активна!</button>
+    </div>
+
+    <div class="gameFinished">
+        <button class="btn btn-lg  btn-info btn-block" disabled>Игра завершена</button>
+    </div>
+
+    <div class="activateButton col-xs-12 nopadding">
+        <button class="btn btn-lg  btn-primary btn-block activate" id="runTimer"><i class="fa fa-play"></i>  Запустить нетворкинг</button>
+    </div>
+
+    <h3 class="text-primary activateWarn">Идет запуск...</h3>
+
+    <br />
+
+    <div class="col-xs-12 nopadding">
+        <a class="btn btn-block btn-default" href="/Connections/Gamegraph/?gid=33" target="_blank">Граф связей</a>
+    </div>
+    
+</div>
+
+
+<script src="~/Scripts/main.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(".gameActive").hide();
+        $(".gameInfo").hide();
+        $(".gameFinished").hide();
+        $(".disclaimer").hide();
+        $(".leaderBoardBlock").hide();
+        $("#activatation").hide();
+        $(".activateWarn").hide();
+
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('gid');
+        let gid = searchParams.get('gid');
+
+        let searchGameCode = new URLSearchParams(window.location.search);
+        searchGameCode.has('gameCode');
+        let gameCode = searchGameCode.get('gameCode');
+
+        $("#txtGroupName").val(gid);
+        $("#codeText").text(gameCode);
+        buildTuneLinks();
+
+        checkGameStatus();
+
+        function checkGameStatus() {
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetGameStatus", "Games")',
+                contentType: "application/json; charset=utf-8",
+                data: { gameId: gid },
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                if (data == 1) {
+                    $(".activateButton").hide();
+                    $(".gameActive").show();
+                    $(".gameInfo").show();
+                    $(".activateWarn").hide();
+
+
+                } else if (data == 2) {
+                    $(".gameActive").hide();
+                    $(".gameInfo").hide();
+                    $(".activateButton").hide();
+                    $(".gameFinished").hide();
+                    $(".activateWarn").hide();
+
+                    $(".code-block").hide();
+                    $(".tuneGameLists").hide();
+                    $(".game-data").hide();
+                    setTimeout(function() { GetUserLeaderBoard(gid); } , 3000);
+                    setInterval(function() { GetUserLeaderBoard(gid, 0); }, 20000);
+                    changeTitle();
+                    $(".disclaimer").show();
+                    $(".leaderBoardBlock").show();
+                }
+
+                $("#playerNum").html(data);
+            }
+
+            function errorFunc() {
+                console.log('Не удалось получить статус игры');
+            }
+        }
+
+        $('.activate').on('click', function () {
+
+            $("#activate").hide();
+            $(".activateWarn").show();
+            $(".activateButton").hide();
+
+        });
+
+        function AlarmTimer() {
+            var timeleft = 30;
+
+            var downloadTimer = setInterval(function () {
+                timeleft--;
+                console.log(timeleft);
+                if (timeleft <= 0) {
+                    clearInterval(downloadTimer);
+                    alarm("Активация провалена :( Перезагрузите страницу.");
+                }
+
+            }, 1000);
+        }
+
+        function getConnectedPlayers() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetConnectedPlayers", "Games")',
+                contentType: "application/json; charset=utf-8",
+                data: { gid: gid },
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                $("#playerNum").html(data);
+            }
+
+            function errorFunc() {
+                console.log('Не удалось получить список игроков');
+            }
+        }
+
+        function buildTuneLinks() {
+            let classesUrl = "btn btn-xs btn-default";
+            let styleUrl = "margin: 0 10px 0 10px;";
+            let result = "";
+
+            let conTypeUrl = "/ConnectionTypes/Index/?gid=" + gid + "&gameCode=" + gameCode;
+            let connectionType = '<a href="' + conTypeUrl + '" class="'+ classesUrl +'" style="'+ styleUrl +'">Типы сделок</a>';
+
+            let needTypeUrl = "/NeedTypes/Index/?gid=" + gid + "&gameCode=" + gameCode;
+            let needType = '<a href="' + needTypeUrl + '" class="' + classesUrl + '" style="'+ styleUrl +'">Типы запросов</a>';
+
+            let benefitTypeUrl = "/BenefitTypes/Index/?gid=" + gid + "&gameCode=" + gameCode;
+            let benefitType = '<a href="' + benefitTypeUrl + '" class="' + classesUrl + '" style="'+ styleUrl +'">Типы польз</a>';
+
+            result = connectionType + needType + benefitType;
+            $('.tuneGameLists').append(result);
+        }
+
+        GetUserProjects();
+         function GetUserProjects() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("UserProjects", "Games")',
+                contentType: "application/json; charset=utf-8",
+                data: { gid: 33 },
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+             function successFunc(data, status) {
+                 console.log("user projects");
+                console.log(data);
+            }
+
+            function errorFunc() {
+                console.log('Не удалось получить список игроков');
+            }
+        }
+
+
+        function changeTitle() {
+            $(".mainTitle").html("Игра завершена.");
+        }
+
+        setInterval(getConnectedPlayers, 5000);
+    });
+</script>
+@Scripts.Render("~/Scripts/common/main.js")
+
+<style>
+    .code-block {
+        height: auto;
+    }
+
+    #code-title {
+        padding-top: 1em;
+    }
+
+    .code {
+        background-color: #f6f6f6;
+        padding: 0.5em 1em 0.5em 1em;
+    }
+
+    .itemValue {
+        font-size: 24px;
+    }
+</style>

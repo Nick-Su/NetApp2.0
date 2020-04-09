@@ -1,0 +1,169 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model IEnumerable<NetApp.Models.Project>
+
+@{
+    ViewBag.Title = "Игровой стол";
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+    <script src="~/Scripts/signalr/common.js"></script>
+}
+
+<input type="hidden" class="pageName" value="networking" />
+
+<h3 id="tableNumber" class="text-primary">Группа <b><span class="text-danger groupNum"></span></b> Формирование полезных связей</h3>
+<hr />
+
+@Html.Partial("_StatusBar")
+
+<div class="text-justify">
+    <h4 class="text-info text-light">
+        Время до перенаправления: <span id="timer" class="itemValue text-danger"></span>
+    </h4>
+</div>
+<hr />
+
+<div>
+    <h4 class="text-info">Ваш активный проект:</h4>
+    <p id="player-active-project"></p>
+</div>
+<hr />
+
+<h3 class="text-primary">Проекты участников</h3>
+<br />
+
+<div id="tablePlayers"></div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        let searchParamsGid = new URLSearchParams(window.location.search);
+        searchParamsGid.has('gid');
+        let gid = searchParamsGid.get('gid');
+
+        $("#txtGroupName").val(gid);
+        let spid; 
+
+        $('#tablePlayers').html('<img src="/images/ajax-loader-thin.gif" class="bigLoader"/>');
+        $('#player-active-project').html('<img src="/images/ajax-loader-thin.gif" />');
+
+        GetPlayerActiveProject().done(handleData);
+
+        function GetPlayerActiveProject() {
+            return $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetPlayerActiveProject", "Games")',
+                contentType: "application/json; charset=utf-8",
+                data: { gid: gid },
+                dataType: "json",
+                success: handleData
+            });
+        }
+
+        function handleData(json) {
+            var activeProject = JSON.parse(json);
+
+            if (activeProject != null) {
+                $('#player-active-project').text(activeProject.result[0].Name);
+                spid = activeProject.result[0].Id;
+            }
+        }
+
+        let tid = 0;
+        getTablePlayerList(tid, gid);
+
+        function getTablePlayerList(tid, gid) {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetTablePlayerList", "Games")',
+                contentType: "application/json; charset=utf-8",
+                data: {tableId: tid, gameId: gid},
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                var parsedResult = JSON.parse(data);
+
+                let qty = parsedResult.finalProjects.length;
+                let content = '<table class="' + "table table-striped" + '">';
+                for (let i = 0; i < qty; i++) {
+
+                    let name = parsedResult.finalProjects[i].Name;
+
+                    let url = "";
+                    let text = "";
+                    let clname = "";
+                    let link = "";
+                    if (parsedResult.finalProjects[i].IsRequestExist == 1) {
+                        text = "Запрос отправлен";
+                        clname = "btn btn-sm btn-success";
+                        link = '<button class="' + clname + '">Запрос отправлен</button>'
+                    } else {
+                        text = "Запросить ресурс";
+                        clname = "btn btn-sm btn-primary";
+                        url = '/ConnectionRequests/Create/?spid=' + spid + '&rpid=' + parsedResult.finalProjects[i].Id + '&gid=' + gid;
+                        link = '<div class="' + "outer" + '"><div class="' + "divClass" + '"><a href="' + url + '" class="' + clname + '">' + text + '</a></div></div>';
+                    }
+
+
+                    let tableRow = "<tr>" +
+                        '<td class="'+ "col-xs-9"+'"><div>' + name + "</div></td>" +
+                        '<td class="'+"cellClass"+'">' + link + "</td>" +
+                        "</tr>";
+
+                    content += tableRow;
+                }
+
+                content += "</table>"
+                $('#tablePlayers').html(content);
+            }
+
+            function errorFunc() {
+                console.log('Список игроков не получен');
+            }
+        }
+
+    });
+</script>
+
+
+<style>
+
+    .itemValue {
+        font-size: 24px;
+    }
+
+    table {
+        border-collapse: collapse;
+        padding: 0;
+    }
+
+    .divClass {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .outer {
+        display: table;
+        overflow: hidden;
+    }
+
+    table td {
+        display: table-cell;
+        vertical-align: middle;
+        height: 30px;
+    }
+
+        table td div {
+            height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+        }
+</style>

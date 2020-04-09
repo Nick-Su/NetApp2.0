@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Запрос отправлен";
+}
+
+<br />
+<h3 class="text-primary text-centers animated fadeInRight ">Запрос успешно отправлен!</h3>
+
+<br />
+<div class="row text-center">
+    <i class="fa fa-check-circle ok text-center animated fadeInLeft"></i>
+</div>
+<br /><br />
+<button class="btn btn-block btn-default back animated fadeInLeft">Назад</button>
+
+
+<script type="text/javascript">
+    let searchParamsGid = new URLSearchParams(window.location.search);
+    searchParamsGid.has('gid');
+    let gid = searchParamsGid.get('gid');
+    let url = "/Games/WhereAmI/?gid=" + gid;
+
+    $(".back").click(function () {
+        window.location.href = url;
+    });
+
+    var timeleft = 5;
+    var downloadTimer = setInterval(function () {
+        timeleft--;
+        //console.log(timeleft);
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+            window.location.href = url;   
+        } 
+                
+    }, 1000);
+
+</script>
+
+<style>
+    .ok {
+        font-size: 5em;
+        color: #52A8D9;
+    }
+</style>

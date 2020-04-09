@@ -1,0 +1,99 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar mainmenu">
+            <li></li>
+            <li>@Html.ActionLink("Подключиться к игре", "ConnectToGame", "Games")</li>
+            <li>@Html.ActionLink("Создать Игру", "Create", "Games")</li>
+            <li>@Html.ActionLink("Запросы на связь", "Index", "ConnectionRequests")</li>
+            <li>@Html.ActionLink("Мои проекты", "Index", "Projects")</li>
+            <li>@Html.ActionLink("Мои связи", "MyConnections", "Connections")</li>
+
+            <li class="backLink"></li>
+            <li>
+                    @Html.ActionLink(User.Identity.GetUserName() + "", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Зарегистрироваться", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Войти", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+
+
+<script type="text/javascript">
+
+    BackToGame();
+    BackToAdmin();
+
+    // returns gid
+    function BackToGame() {
+        $.getJSON('@Url.Action("BackToGame", "Games")',
+            function (json) {
+
+                var result = JSON.parse(json);
+
+                if (result != 0) {
+                    buildStatusBar(result);
+                    buildBackToGameBtn(result);
+                }
+            });
+    }
+
+    function buildBackToGameBtn(gid) {
+        let url = "/Games/WhereAmI/?gid=" + gid;
+        let style = "color: #d80000;";
+        let btnBack = '<a href="' + url + '" style="' + style +'">Вернуться в игру</a>';
+        $(".mainmenu>li:nth-child(1)").append(btnBack); //.css({ "color": "red" });
+        $(".mainmenu>li:nth-child(1)").css({ "color": "red!important" });
+    }
+
+    function buildStatusBar(gid) {
+        
+    }
+
+    function BackToAdmin() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("BackToAdmin", "Games")',
+            contentType: "application/json; charset=utf-8",
+            data: {},
+            dataType: "json",
+            success: btaSuccess,
+            error: errorFunc
+        });
+
+        function btaSuccess(data) {
+
+            var result = JSON.parse(data);
+            // console.log(result);
+            if (result == 0) {
+                // do nothing
+                return false;
+            }
+
+            let url = "/Games/AdminZone?gameCode=" + result[0].gameCode + "&gid=" + result[0].gid;
+            let style = "color: #d80000;";
+            let btnBack = '<a href="' + url + '" style="' + style +'">Вернуться в админку</a>';
+            $(".mainmenu>li:nth-child(1)").append(btnBack); //.css({ "color": "red" });
+            $(".mainmenu>li:nth-child(1)").css({ "color": "red!important" });
+
+        }
+    }
+
+    function errorFunc() {
+        console.log('error');
+    }
+</script>

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+
+<div class="main">
+
+    <div id="loginBlock">
+
+        <input id="txtUserName" type="text" value="nameRandom" />
+        <input id="txtGroupName" type="text" value="1" />
+
+    </div>
+
+    <div id="chatBody">
+        <div id="header"></div>
+
+        <button id="runTimer">Run Timer</button>
+
+        <div id="timer"></div>
+    </div>
+    <input id="hdId" type="hidden" />
+    <input id="username" type="hidden" />
+
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jquery.signalR-2.4.1.js")
+    @Scripts.Render("~/Scripts/jquery.color.js")
+    @Scripts.Render("~/signalr/hubs")
+    @Scripts.Render("~/Scripts/signalr/client.js")
+}
+
+
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+<!--Ссылка на библиотеку SignalR -->
+@*<script src="~/Scripts/client.js"></script>*@

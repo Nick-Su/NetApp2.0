@@ -1,0 +1,193 @@
+﻿@model NetApp.Models.Game
+
+@{
+    ViewBag.Title = "Создать нетворкинг";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+
+        <div class="row header">
+            <div class="col-xs-12">
+                <h2 class="text-primary">@ViewBag.Title</h2>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-6 first-column">
+
+                @*<div class="form-group labelPadding">
+            @Html.LabelFor(model => model.NumPlayers, htmlAttributes: new { @class = "control-label text-light bg-dark" })
+            <div class="">
+                @Html.EditorFor(model => model.NumPlayers, new { htmlAttributes = new { @class = "form-control", min = 1, max = 10000 } })
+                @Html.ValidationMessageFor(model => model.NumPlayers, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+                <div class="form-group labelPadding">
+                    @Html.LabelFor(model => model.NumTacts, htmlAttributes: new { @class = "control-label " })
+                    <div class="">
+                        @Html.EditorFor(model => model.NumTacts, new { htmlAttributes = new { @class = "form-control", min = 1, max = 60 } })
+                        @Html.ValidationMessageFor(model => model.NumTacts, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+               
+
+            </div>
+
+
+            <div class="col-sm-6 col-xs-6 second-columns">
+
+                <div class="form-group labelPadding">
+                    @Html.LabelFor(model => model.NumTables, htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        @Html.EditorFor(model => model.NumTables, new { htmlAttributes = new { @class = "form-control", min = 1, max = 90 } })
+                        @Html.ValidationMessageFor(model => model.NumTables, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12">
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TactDuration, htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        <select id="TactDuration" class="form-control maxMinWidth" name="TactDuration">
+                            <option value="30">30 сек.</option>
+                            <option value="60">1 мин.</option>
+                            <option value="120">2 мин.</option>
+                            <option value="180">3 мин.</option>
+                            <option value="240">4 мин.</option>
+                            <option value="300">5 мин.</option>
+                            <option value="360">6 мин.</option>
+                            <option value="420">7 мин.</option>
+                            <option value="480">8 мин.</option>
+                            <option value="540">9 мин.</option>
+                            <option value="600">10 мин.</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TransitionGroup, htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        <select id="TransitionGroup" class="form-control maxMinWidth" name="TransitionGroup">
+                            <option value="30">30 сек.</option>
+                            <option value="60">1 мин.</option>
+                            <option value="120">2 мин.</option>
+                            <option value="180">3 мин.</option>
+                            <option value="240">4 мин.</option>
+                            <option value="300">5 мин.</option>
+                            <option value="360">6 мин.</option>
+                            <option value="420">7 мин.</option>
+                            <option value="480">8 мин.</option>
+                            <option value="540">9 мин.</option>
+                            <option value="600">10 мин.</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PlayerIntroductionTime, htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        <select id="PlayerIntroductionTime" class="form-control maxMinWidth" name="PlayerIntroductionTime">
+                            <option value="30">30 сек.</option>
+                            <option value="60">1 мин.</option>
+                            <option value="120">2 мин.</option>
+                            <option value="180">3 мин.</option>
+                            <option value="240">4 мин.</option>
+                            <option value="300">5 мин.</option>
+                            <option value="360">6 мин.</option>
+                            <option value="420">7 мин.</option>
+                            <option value="480">8 мин.</option>
+                            <option value="540">9 мин.</option>
+                            <option value="600">10 мин.</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TimeToAproveRequests, htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        <select id="TimeToAproveRequests" class="form-control maxMinWidth" name="TimeToAproveRequests">
+                            <option value="30">30 сек.</option>
+                            <option value="60">1 мин.</option>
+                            <option value="120">2 мин.</option>
+                            <option value="180">3 мин.</option>
+                            <option value="240">4 мин.</option>
+                            <option value="300">5 мин.</option>
+                            <option value="360">6 мин.</option>
+                            <option value="420">7 мин.</option>
+                            <option value="480">8 мин.</option>
+                            <option value="540">9 мин.</option>
+                            <option value="600">10 мин.</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <br />
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsOnlyGivenConTypes, htmlAttributes: new { @class = "control-label col-md-2 col-xs-8" })
+                <div class="col-md-10 col-lg-10 col-xs-4">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsOnlyGivenConTypes)
+                        @Html.ValidationMessageFor(model => model.IsOnlyGivenConTypes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsOnlyGivenNeeds, htmlAttributes: new { @class = "control-label col-md-2 col-xs-8" })
+                <div class="col-md-10 col-xs-4">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsOnlyGivenNeeds)
+                        @Html.ValidationMessageFor(model => model.IsOnlyGivenNeeds, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsOnlyGivenBenefits, htmlAttributes: new { @class = "control-label col-md-2 col-xs-8" })
+                <div class="col-md-10 col-xs-4">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsOnlyGivenBenefits)
+                        @Html.ValidationMessageFor(model => model.IsOnlyGivenBenefits, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Далее</button>
+        <br />
+        
+
+        @Html.ActionLink("На главную", "Index", "Home", null, new { @class = "btn btn-sm btn-default btn-block" })
+
+    </div>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<style>
+    @@media (max-width: 416px) {
+        .labelPadding label {
+            height: 40px;
+        }
+    }
+</style>

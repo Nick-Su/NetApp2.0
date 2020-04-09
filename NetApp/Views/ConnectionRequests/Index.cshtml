@@ -1,0 +1,200 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model IEnumerable<NetApp.Models.ConnectionRequest>
+
+@{
+    ViewBag.Title = "Запросы на ресурсы";
+}
+
+<input type="hidden" class="pageName" value="requestsList" />
+
+<h2 class="text-primary">Запросы на ресурсы</h2>
+<hr />
+
+@Html.Partial("_StatusBar")
+
+<div class="aproveAndBackTLB">
+    <h4 class="text-left text-info">У вас есть <span id="timer" class="itemValue text-danger"></span></h4>
+
+    <h4 class="text-left text-info">Чтобы принять запросы до показа результатов нетворкинга.</h4>
+</div>
+
+@*<div class="backToGameBlock col-xs-12"></div>*@
+
+<div id="tableRequestsWrap" class="col-xs-12 nopadding"></div>
+
+@*<div class="backToGameBlock col-xs-12"></div>*@
+
+
+<script type="text/javascript">
+
+    $(".aproveAndBackTLB").hide();
+    $(".stageProgress").hide();
+
+    let searchParamsGid = new URLSearchParams(window.location.search);
+    searchParamsGid.has('gid');
+    let gid = searchParamsGid.get('gid');
+
+    if (gid != null) {
+        $("#txtGroupName").val(gid);
+        $(".stageProgress").show();
+    };
+
+
+    let searchParamsTLB = new URLSearchParams(window.location.search);
+    searchParamsTLB.has('toLeaderBoard');
+    let tlb = searchParamsTLB.get('toLeaderBoard');
+
+    let searchParamsAfter = new URLSearchParams(window.location.search);
+    searchParamsAfter.has('after');
+    let globalAfter = searchParamsAfter.get('after');
+
+
+    let globalPr;
+
+    $(document).ready(function () {
+
+        $('#tableRequestsWrap').append('<img src="/images/ajax-loader-thin.gif" class="bigLoader"/>');
+
+        let userProjectsGlobal = "";
+
+        getConnectionRequests();
+
+        function getConnectionRequests() {
+
+            getMyProjects();
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetConnectionRequests", "ConnectionRequests")',
+                contentType: "application/json; charset=utf-8",
+                data: {},
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+
+                var parsedResult = JSON.parse(data);
+
+                if (parsedResult.length == 0) {
+                    let warn = '<h4 class="' + "text-info" + '">Нет запросов для показа</h4>';
+                    $("#tableRequestsWrap").html(warn);
+                    return false;
+                }
+
+
+                globalPr = parsedResult;
+                processData(parsedResult);
+
+            }
+
+            function errorFunc() {
+                console.log('error');
+            }
+         }
+
+        function getMyProjects() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetMyProjects", "Projects")',
+                contentType: "application/json; charset=utf-8",
+                data: {},
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                userProjectsGlobal = JSON.parse(data);
+            }
+
+            function errorFunc() {
+                console.log('error');
+            }
+            //_callback();
+        }
+
+        function processData(parsedResult) {
+
+            if (userProjectsGlobal == null) {
+                return "Project list is empty";
+            }
+
+            let qty = parsedResult.length;
+            let connectionRequestId = null;
+            let content = '<table class="' + "table table-striped col-xs-12" + '">';
+            content += '<tr>'
+                + '<th class="'+"col-xs-9"+'">' + 'Запрос' + '</th>'
+                + '<th>' + 'Статус' + '</th>'
+                + '</tr>';
+
+            for (let i = 0; i < qty; i++) {
+                connectionRequestId = parsedResult[i].ConnectionRequestId;
+                for (let j = 0; j < userProjectsGlobal.userProjectsList.length; j++) {
+
+                    if (parsedResult[i].SenderProjectId == userProjectsGlobal.userProjectsList[j].Id) {
+                        parsedResult[i].Incoming = false;
+                    } else if (parsedResult[i].RecieverProjectId == userProjectsGlobal.userProjectsList[j].Id) {
+                        parsedResult[i].Incoming = true;
+                    }
+                }
+
+                let urlAccept = "/ConnectionRequests/Edit?id=" + connectionRequestId + "&gid=" + parsedResult[i].GameId + "&toLeaderBoard=" + tlb + "&after="  + globalAfter;
+                let urlDecline = "/ConnectionRequests/DeclineRequest?id=" + connectionRequestId + "&gid=" + parsedResult[i].GameId + "&toLeaderBoard=" + tlb + "&after=" + globalAfter;
+                let btnStatusWrap = "";
+
+                if (parsedResult[i].Incoming) {
+                    if (parsedResult[i].IsApproved == 0) {
+                        let btnAccept = '<a href="' + urlAccept + '"><button class="' + 'btn btn-sm btn-primary col-xs-12 aprove' + '">Подробнее</button></a>';
+                        //let btnDecline = '<a href="' + urlDecline + '"><button class="' + 'btn btn-sm btn-danger col-xs-6' + '">Отклонить</button></a>';
+                        btnStatusWrap +=  btnAccept;
+                    } else if (parsedResult[i].IsApproved == 2) {
+                        btnStatusWrap += "Отклонен";
+                    } else if (parsedResult[i].IsApproved == 1) {
+                        btnStatusWrap += "Принят";
+                    }
+
+                } else {
+                    if (parsedResult[i].IsApproved == 0) {
+                        btnStatusWrap += "На рассмотрении";
+                    } else if (parsedResult[i].IsApproved == 1) {
+                        btnStatusWrap += "Принят";
+                    } else if (parsedResult[i].IsApproved == 2) {
+                        btnStatusWrap += "Отклонен";
+                    }
+                }
+
+                let tableRow = "<tr>" +
+                    '<td class="'+"col-xs-6"+'">' + parsedResult[i].SenderActiveProjectName + " -> " + parsedResult[i].RecieverActiveProjectName + "</td>" +
+                    '<td class="'+"col-xs-6"+'" style="'+"vertical-align: middle; text-align:center"+'">' + '<b>' + btnStatusWrap + '</b>' + "</td>" +
+                    "</tr>";
+
+                content += tableRow;
+            }
+
+            content += '</table>'
+            $('#tableRequestsWrap').html(content);
+        }
+
+        if (tlb != null) {
+            $(".aproveAndBackTLB").show();
+        }
+
+     });
+
+</script>
+
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+}
+
+<style>
+    .backToGameBlock {
+        margin-bottom: 2em;
+    }
+</style>

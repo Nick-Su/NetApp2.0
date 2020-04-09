@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Перенаправление";
+}
+
+<input type="hidden" class="pageName" value="groupTransition" />
+
+<h2 class="text-primary">Переход в другую группу</h2>
+<hr />
+
+@Html.Partial("_StatusBar")
+
+<h4 class="text-info">
+    У вас есть <span id="timer-mins" class="itemValue text-danger"></span><span id="timer" class="itemValue text-danger"></span>
+</h4>
+
+<div id="timer"></div>
+
+<h4 class="text-left text-secondary">Чтобы перейти в игровую группу <b><span class="text-danger groupNum tnum-decoration"></span></b> до начала нетворкинга.</h4>
+
+<script type="text/javascript">
+
+    let searchParamsGid = new URLSearchParams(window.location.search);
+    searchParamsGid.has('gid');
+    let gid = searchParamsGid.get('gid');
+    $("#txtGroupName").val(gid);
+    $(".syncStage").hide();
+</script>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+}
+
+<style>
+    .tnum-decoration {
+        font-size: 26px;
+    }
+
+    .itemValue {
+        font-size: 22px;
+    }
+</style>

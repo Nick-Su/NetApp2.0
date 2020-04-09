@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NetApp.Models.ConnectionType>
+
+@{
+    ViewBag.Title = "Типы сделок";
+}
+
+<h2 class="text-primary">Типы сделок</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Decription)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>     
+            <td>
+                @Html.DisplayFor(modelItem => item.Decription)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Details", new { id = item.ConnectionTypeId, gid = item.GameId, gameCode = item.Game.Code }, new { @class = "btn btn btn-info fa fa-info-circle" })
+                @Html.ActionLink(" ", "Edit", new { id = item.ConnectionTypeId, gid = item.GameId, gameCode = item.Game.Code }, new { @class = "btn btn btn-default fa fa-pencil" })
+                @Html.ActionLink(" ", "Delete", new { id = item.ConnectionTypeId, gid = item.GameId, gameCode = item.Game.Code }, new { @class = "btn btn-danger fa fa-trash" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="addLinkBlock"></div> <br />
+<div id="backLinkblock"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('gid');
+        let gid = searchParams.get('gid');
+
+        let searchGameCode = new URLSearchParams(window.location.search);
+        searchGameCode.has('gameCode');
+        let gameCode = @ViewBag.gameCode;
+
+        let classBackLink = "btn btn-sm btn-default btn-block";
+        let backLink = '<a href="' + "/Games/AdminZone?gameCode=" + gameCode + "&gid=" + gid+ '" class="'+ classBackLink +'">Назад</a>';
+        $("#backLinkblock").append(backLink);
+
+        let classAddLink = "btn btn-sm btn-primary btn-block";
+        let addLink = '<a href="' + "/ConnectionTypes/Create?gameCode=" + gameCode + "&gid=" + gid + '" class="' + classAddLink + '">Добавить</a>';
+        $("#addLinkBlock").append(addLink);    
+    });
+</script>

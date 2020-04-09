@@ -1,0 +1,96 @@
+﻿@model NetApp.Models.ConnectionRequest
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ConnectionRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Game.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConnectionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConnectionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SenderResourceRequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SenderResourceRequest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SenderGivenBenefit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SenderGivenBenefit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SenderProjectId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SenderProjectId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecieverGetResource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecieverGetResource)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecieverGetBenefit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecieverGetBenefit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecieverProjectId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecieverProjectId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsApproved)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

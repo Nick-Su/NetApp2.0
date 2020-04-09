@@ -1,0 +1,63 @@
+﻿@model NetApp.Models.Game
+
+@{
+    ViewBag.Title = "Подключиться к нетворкингу";
+}
+
+    <div class="container nopadding">
+
+        <div class="text-left nopadding">
+            <h3 class="text-primary">@ViewBag.Title</h3>
+        </div>
+        <hr />
+        
+        @*<br />*@
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="container nopadding">
+                <div class="nopadding">
+
+                    <div class="form-group ">
+                        <label for="gameCode" class="text-info">Код подключения можно получить у ведущего.</label>
+                        <input type="number" value="" name="gameCode" id="gameCode" class="form-control codeField" placeholder="Введите код подключения" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-lg btn-primary btn-block connect" value="Подключиться" />
+                    </div>
+                    
+                </div>
+            </div>
+
+        }
+
+
+
+        
+
+        <div class=" col-sm-11 col-xs-12 col-md-12 nopadding">
+            @Html.ActionLink("Назад ", "Index", "Home", null, new { @class = "btn btn-xs btn-default col-xs-12" })
+        </div>
+    </div>
+
+             
+<style>
+    .codeField {
+        height: 3em;
+        min-width: 100% !important;
+    }
+
+    .codeField[placeholder]
+    {
+      line-height:28px;
+      font-size:22px;
+    }
+
+    .connect {
+        min-width: 100%;
+    }
+   
+</style>

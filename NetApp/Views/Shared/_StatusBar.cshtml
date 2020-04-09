@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+
+<input type="hidden" id="txtGroupName" value="" />
+<input type="hidden" id="txtUserName" value="@User.Identity.GetUserName()" />
+
+
+<div class="statusBar">
+    <h5 class="text-info stageProgres">
+        <span class="round-label"></span> <span class="text-danger currentTact"></span>
+        <span class="currentStage text-secondary"></span>
+        <span class="syncStageWrap"></span>
+    </h5>
+    <div class="divider-bar"></div>
+</div>

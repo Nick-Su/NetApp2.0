@@ -1,0 +1,274 @@
+﻿@model NetApp.Models.ConnectionRequest
+
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Создание запроса на ресурс";
+}
+
+@*<input type="hidden" id="txtGroupName" value="" />
+<input type="hidden" id="txtUserName" value="@User.Identity.GetUserName()" />*@
+<input type="hidden" class="pageName" value="trustedPage" />
+
+<h2 class="text-primary">Запрос ресурса</h2>
+<hr />
+
+@Html.Partial("_StatusBar")
+
+@*<h5 class="text-info">
+        Раунд <span class="text-danger currentTact"></span>
+        <span class="currentStage text-secondary"></span>
+        <span class="syncStageWrap"></span>
+    </h5>
+    <hr />*@
+
+<h4 class="text-info">Между проектом:</h4>
+<div id="senderProjectName" class="text-secondary"></div>
+<h4 class="text-info">И проектом:</h4>
+<div id="recieverProjectName" class="text-secondary"></div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="spidBlock"></div>
+        <div id="rpidBlock"></div>
+        <div id="gameIdBlock"></div>
+
+        <div id="conTypeBlock"></div>
+
+        <!-- Connection types  -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConnectionType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="givenConType">
+                @Html.DropDownList("ConType", null, htmlAttributes: new { @class = "form-control selectCon maxMinWidth" })
+            </div>
+
+            <div class="customConInputWrap">
+                <div class="col-md-10" id="userConType">
+                    @Html.EditorFor(model => model.ConnectionType, new { htmlAttributes = new { @class = "form-control maxMinWidth" } })
+                    @Html.ValidationMessageFor(model => model.ConnectionType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group btnShowCustomConFieldWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowCustomConField">Другое</button>
+            </div>
+        </div>
+
+        <div class="form-group btnShowConListWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowConList">Список типов связей</button>
+            </div>
+        </div>
+
+        <hr />
+        <!-- Need types  -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.SenderResourceRequest, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="givenNeedType">
+                @Html.DropDownList("NeedTypeList", null, htmlAttributes: new { @class = "form-control selectNeedType maxMinWidth" })
+            </div>
+
+            <div class="customNeedInputWrap">
+                <div class="col-md-10" id="userNeedType">
+                    @Html.EditorFor(model => model.SenderResourceRequest, new { htmlAttributes = new { @class = "form-control maxMinWidth" } })
+                    @Html.ValidationMessageFor(model => model.SenderResourceRequest, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group btnShowCustomNeedFieldWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowCustomNeedField">Другое</button>
+            </div>
+        </div>
+
+        <div class="form-group btnShowNeedListWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowNeedList">Список запросов</button>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Benefit types  -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.SenderGivenBenefit, "Предлагаю взамен", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="givenBenefitType">
+                @Html.DropDownList("BenefitTypeList", null, htmlAttributes: new { @class = "form-control selectBenefitType maxMinWidth" })
+            </div>
+
+            <div class="customBenefitInputWrap">
+                <div class="col-md-10" id="userBenefitType">
+                    @Html.EditorFor(model => model.SenderGivenBenefit, new { htmlAttributes = new { @class = "form-control maxMinWidth" } })
+                    @Html.ValidationMessageFor(model => model.SenderGivenBenefit, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group btnShowCustomBenefitFieldWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowCustomBenefitField">Другое</button>
+            </div>
+        </div>
+
+        <div class="form-group btnShowBenefitListWrap">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-sm btn-default btn-block" id="btnShowBenefitList">Список польз</button>
+            </div>
+        </div>
+
+        <hr />
+        <!-- Submit btn  -->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="Отправить запрос" class="btn btn-lg btn-primary btn-block maxMinWidth" />*@
+                <button type="submit" value="Отправить запрос" class="btn btn-lg btn-primary btn-block maxMinWidth">Отправить запрос <i class="fa fa-paper-plane"></i></button>
+                <br />
+                <div id="backToGameLinkBlock"></div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+
+    <script src="~/Scripts/common/projects.js"></script>
+    <script src="~/Scripts/common/connections.js"></script>
+}
+
+<script type="text/javascript">
+    let searchParamsGid = new URLSearchParams(window.location.search);
+    searchParamsGid.has('gid');
+    let gid = searchParamsGid.get('gid');
+
+    $("#txtGroupName").val(gid);
+
+    $(document).ready(function () {
+
+        $(".customConInputWrap").hide(); 
+        $(".btnShowConListWrap").hide(); 
+
+        $("#btnShowCustomConField").click(function () {
+            $(".btnShowCustomConFieldWrap").hide();
+            $("#givenConType").hide();
+            $(".customConInputWrap").show();
+            $(".btnShowConListWrap").show();
+        });
+
+        $("#btnShowConList").click(function () {
+            $(".btnShowCustomConFieldWrap").show();
+            $("#givenConType").show();
+            $(".btnShowConListWrap").hide(); 
+            $(".customConInputWrap").hide(); 
+
+        });
+
+
+        $(".customBenefitInputWrap").hide();
+        $(".btnShowBenefitListWrap").hide(); 
+
+        $("#btnShowCustomBenefitField").click(function () {
+            $(".btnShowCustomBenefitFieldWrap").hide();
+            $("#givenBenefitType").hide();
+            $(".customBenefitInputWrap").show();
+            $(".btnShowBenefitListWrap").show();
+        });
+
+        $("#btnShowBenefitList").click(function () {
+            $(".btnShowCustomBenefitFieldWrap").show();
+            $("#givenBenefitType").show();
+            $(".btnShowBenefitListWrap").hide(); 
+            $(".customBenefitInputWrap").hide(); 
+
+        });
+
+
+        $(".customNeedInputWrap").hide(); 
+        $(".btnShowNeedListWrap").hide();
+
+        $("#btnShowCustomNeedField").click(function () {
+            $(".btnShowCustomNeedFieldWrap").hide();
+            $("#givenNeedType").hide();
+            $(".customNeedInputWrap").show();
+            $(".btnShowNeedListWrap").show();
+        });
+
+        $("#btnShowNeedList").click(function () {
+            $(".btnShowCustomNeedFieldWrap").show();
+            $("#givenNeedType").show();
+            $(".btnShowNeedListWrap").hide();
+            $(".customNeedInputWrap").hide();
+
+        });
+
+  
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('gid');
+        let gid = searchParams.get('gid');
+        let searchParamSpid = new URLSearchParams(window.location.search);
+        searchParamSpid.has('spid');
+        let spid = searchParamSpid.get('spid');
+        let searchParamRpid = new URLSearchParams(window.location.search);
+        searchParamRpid.has('rpid');
+        let rpid = searchParamRpid.get('rpid');
+        let gameIdInput = '<input type="' + "hidden" + '" name="' + "GameId" + '" id="' + "GameId" + '" value="' + gid + '"/>';
+        $("#gameIdBlock").append(gameIdInput);
+        let spidInput = '<input type="' + "hidden" + '" name="' + "SenderProjectId" + '" id="' + "SenderProjectId" + '" value="' + spid + '"/>';
+        $("#spidBlock").append(spidInput);
+        let rpidInput = '<input type="' + "hidden" + '" name="' + "RecieverProjectId" + '" id="' + "RecieverProjectId" + '" value="' + rpid + '"/>';
+        $("#rpidBlock").append(rpidInput);
+        let backUrl = "/Games/WhereAmI?gid=" + gid;
+        let backToGameLink = '<a href="' + backUrl + '">' + '<input type="' + "button" + '" class="' + "btn btn-xs btn-default btn-block maxMinWidth" + '" value="' + "Назад" + '"/></a>';
+        $("#backToGameLinkBlock").append(backToGameLink);
+        getName(function (output) {
+            $("#senderProjectName").html(output);
+        }, spid);
+
+        getName(function (output) {
+            $("#recieverProjectName").html(output);
+        }, rpid);
+
+        isOnlyGivenConTypes(gid);
+        isOnlyGivenNeedTypes(gid);
+        isOnlyGivenBenefitTypes(gid);
+
+    });
+
+
+    var selValue = $(".selectCon").val();
+    $("#ConnectionType").val(selValue);
+
+    $(".selectCon").on("change", function () {
+        var selValue = $(".selectCon").val();
+        $("#ConnectionType").val(selValue);
+    });
+
+
+    var selValue = $(".selectNeedType").val();
+    $("#SenderResourceRequest").val(selValue);
+
+    $(".selectNeedType").on("change", function () {
+        var selValue = $(".selectNeedType").val();
+        $("#SenderResourceRequest").val(selValue);
+    });
+
+
+    var selValue = $(".selectBenefitType").val();
+    $("#SenderGivenBenefit").val(selValue);
+    $(".selectBenefitType").on("change", function () {
+        var selValue = $(".selectBenefitType").val();
+        $("#SenderGivenBenefit").val(selValue);
+    });
+</script>

@@ -1,0 +1,75 @@
+﻿@model NetApp.Models.Project
+
+@{
+    ViewBag.Title = "О проекте";
+}
+
+<h2 class="text-primary">О проекте</h2>
+<hr />
+
+<input type="hidden" class="pageName" value="trustedPage" />
+@Html.Partial("_StatusBar")
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Whom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Whom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.What)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.What)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Feature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("К списку проектов", "Index")
+</p>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/signalr/client.js"></script>
+    <script src="~/Scripts/signalr/common.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

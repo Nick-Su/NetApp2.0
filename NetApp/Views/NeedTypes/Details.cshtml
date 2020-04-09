@@ -1,0 +1,47 @@
+﻿@model NetApp.Models.NeedType
+
+@{
+    ViewBag.Title = "Подробнее";
+}
+
+<h2 class="text-primary">Подробнее</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="col-xs-12 nopadding">
+    <div id="addLinkBlock" class="col-xs-6 nopadding"></div>
+    <div id="addBackLink" class="col-xs-6 "></div>
+</div>
+
+<br /><br />
+
+<script type="text/javascript">
+    let searchParams = new URLSearchParams(window.location.search);
+    searchParams.has('gid');
+    let gid = searchParams.get('gid');
+
+    let searchGameCode = new URLSearchParams(window.location.search);
+    searchGameCode.has('gameCode');
+    let gameCode = searchParams.get('gameCode');
+
+    let classEditLink = "btn btn-sm btn-default btn-block";
+    let editLink = '<a href="' + "/NeedTypes/Edit/?id="+ @Model.NeedTypeId +"&gameCode=" + gameCode + "&gid=" + gid + '" class="' + classEditLink + '">Редактировать</a>';
+    $("#addLinkBlock").append(editLink);
+
+    let classBackLink = "btn btn-sm btn-primary btn-block";
+    let backLink = '<a href="' + "/NeedTypes/Index/?gameCode=" + gameCode + "&gid=" + gid + '" class="' + classBackLink + '">Назад, к спиcку</a>';
+    $("#addBackLink").append(backLink);
+
+</script>
