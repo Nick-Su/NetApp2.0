@@ -5031,21 +5031,37 @@ a.badge:focus {
 .nav-pills > li > a > .badge {
   margin-left: 3px;
 }
-.jumbotron {
+.jumbotronIndex1 {
+  padding-top: 1px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  background-image: url('/Images/4.jpg');
+}
+.jumbotronIndex2 {
+  padding-top: 1px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  background-image: url('/Images/1.jpg');
+}
+.jumbotronIndex3 {
   padding-top: 30px;
   padding-bottom: 30px;
   margin-bottom: 30px;
-  color: inherit;
   background-image: url('/Images/4.jpg');
 }
 .jumbotron h1,
 .jumbotron .h1 {
-  color: inherit;
+  /*color: inherit;*/
+}
+.jumbotron h2,
+.jumbotron .h2 {
+  color: #3366ff;
 }
 .jumbotron p {
   margin-bottom: 15px;
   font-size: 21px;
   font-weight: 200;
+  color: #ffffff;
 }
 .jumbotron > hr {
   border-top-color: #ffffff;
@@ -5061,7 +5077,7 @@ a.badge:focus {
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
+    padding-top: 1px;
     padding-bottom: 48px;
   }
   .container .jumbotron,
