@@ -1,0 +1,13 @@
+2020-05-07 05:38:53,797  DEBUG Games BackToGame()[JSON]
+2020-05-07 05:38:53,806  DEBUG Games BackToGame()[JSON]
+2020-05-07 05:38:58,681  ERROR Argument cannot be null or empty
+Parameter name: groupName
+2020-05-07 05:39:06,951  DEBUG Games BackToGame()[JSON]
+2020-05-07 05:39:06,975  DEBUG Games BackToGame()[JSON]
+2020-05-07 05:39:52,353  ERROR Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+2020-05-07 05:40:12,115  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-05-07 05:40:56,879  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-05-07 05:41:31,523  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-05-07 05:41:56,740  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-05-07 05:42:14,792  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-05-07 05:42:25,624  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).

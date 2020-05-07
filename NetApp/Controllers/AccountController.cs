@@ -456,9 +456,10 @@ namespace NetApp.Controllers
             if (user != null)
             {
                 RegisterViewModel model = new RegisterViewModel { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email };
-                ViewBag.user = model;
-                var uid = User.Identity.GetUserId();
+                //ViewBag.user = model;
+                //var uid = User.Identity.GetUserId();
                 //return View(/*db.Projects.Where(t => t.AuthorId == uid).ToList()*/);
+                model.photoProfile = "/Images/profile.jpg";
                 return View(model);
             }
             return RedirectToAction("Login", "Account");

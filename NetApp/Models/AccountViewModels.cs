@@ -90,6 +90,10 @@ namespace NetApp.Models
         [Display(Name = "Подтвердить пароль")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
+
+        //Фото пользователя
+        [Required]
+        public string photoProfile { get; set; }
     }
 
     public class ResetPasswordViewModel

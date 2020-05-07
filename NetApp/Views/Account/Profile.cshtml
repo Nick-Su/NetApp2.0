@@ -10,17 +10,18 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="jumbotron">
+<div class="class="col-md-12 col-xs-12 jumbotron">
     @Html.ValidationSummary(true, "")
-    <div class="col-md-12 col-xs-12 profilePhoto">
+    <div class="col-md-4">
+        <p><img src=@Model.photoProfile width="200"></p>
     </div>
-    <div>
+    <div class="col-md-4">
         <p>Имя: @Html.EditorFor(model => model.FirstName)</p>
         <p>Фамилия: @Html.EditorFor(model => model.LastName)</p>
         <p>Email: @Html.EditorFor(model => model.Email)</p>
     </div>
 
-    <div>
+    <div class="col-xs-12">
         <div>
             <input type="submit" value="Сохранить" />
         </div>

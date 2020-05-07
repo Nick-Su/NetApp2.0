@@ -22,6 +22,7 @@ function callbackFunc(result) {
     $("#vk_auth").click(function () {
         appId = '7138530';
         redirectUri = "http://triz.emsys-group.com/Login/VKLogin";
+        url = 'https://oauth.vk.com/authorize?client_id=' + appId + '&display=popup&redirect_uri=' + redirectUri + '&scope=email&response_type=code&v=5.68';
         newWin = window.open(url, 'vk-login', 'width=665,height=370');
         newWin.onload = function () {
             newWin.close();
