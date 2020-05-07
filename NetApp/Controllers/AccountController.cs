@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NetApp.Models;
 using Microsoft.Owin.Security;
+using System.Net;
 
 
 namespace NetApp.Controllers
@@ -350,6 +351,7 @@ namespace NetApp.Controllers
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -363,6 +365,9 @@ namespace NetApp.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+                    ViewBag.idUser = loginInfo.ExternalIdentity.GetUserId();
+                    WebRequest request = WebRequest.Create("https://api.vk.com/method/users.get?user_ids="+ loginInfo.ExternalIdentity.GetUserId() + "&fields=first_name&access_token=vrqNciO5K_PixGLVU8P4Ol4IdEUtWikzkECo75U1FzTinlSyADDWeoXgmJQRso1pORIigl_90drBf6YQSur-dejH0riv_o6ya6361li0A2s1&v=5.103");
+                    WebResponse response = request.GetResponse();
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
@@ -383,7 +388,7 @@ namespace NetApp.Controllers
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-               
+               // var newinfo = await AuthenticationManager.User;
 
                 if (info == null)
                 {
@@ -407,6 +412,7 @@ namespace NetApp.Controllers
                 
                 if (info.Login.LoginProvider == "VKontakte")
                 {
+                    var inf = info.ExternalIdentity.GetUserName();
                     var text = info.ExternalIdentity.Name;
                     var punctuation = text.Where(Char.IsPunctuation).Distinct().ToArray();
                     var words = text.Split().Select(x => x.Trim(punctuation));
@@ -443,7 +449,51 @@ namespace NetApp.Controllers
             return View(model);
         }
 
-        
+        // Профиль пользователя
+        public async Task<ActionResult> Profile()
+        {
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                RegisterViewModel model = new RegisterViewModel { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email };
+                ViewBag.user = model;
+                var uid = User.Identity.GetUserId();
+                //return View(/*db.Projects.Where(t => t.AuthorId == uid).ToList()*/);
+                return View(model);
+            }
+            return RedirectToAction("Login", "Account");
+        }
+        [HttpPost]
+        public async Task<ActionResult> Profile(RegisterViewModel model)
+        {
+            //var uid = User.Identity.GetUserId();
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                //user.PhoneNumber = model.phone;
+                user.Email = model.Email;
+
+                IdentityResult result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Что-то пошло не так");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Пользователь не найден");
+            }
+
+            return View();
+        }
+
+
 
         //
         // POST: /Account/LogOff

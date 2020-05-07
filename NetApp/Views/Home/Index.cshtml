@@ -13,34 +13,44 @@
 @using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <div class="row">
-        <input type="hidden" class="pageName" value="trustedPage" />
-        <div class="col-md-10">
-            <h2 class="text-primary">Что дальше?</h2>
-            <hr />
+<div class="row">
+    <div class="col-md-12 col-xs-12 jumbotron jumbotronIndex1">
+        <p><span>Создай свой круг общения</span> </p>
+        <p>Находи нужных людей, выбирай</p>
+        <p>сферу деятельности, участвуй в</p>
+        <p>интересных проектах</p>
 
-            <input type="hidden" class="pageName" value="trustedPage" />
-            @Html.Partial("_StatusBar")
-
-            <h3 class="text-info">1. Создайте свой первый проект</h3>
-            <p>Проекты необходимы для построения связей. Заполните минимально необходимую информацию о проекте</p>
-            <p><a class="btn btn-default" href="/projects/create">Создать проект <i class="fa fa-chevron-right text-primary"></i></a></p>
-        </div>
-
-        <div class="col-md-10">
-            <h3 class="text-info">2. Станьте участником нетворкинга</h3>
-            <p>Ваш проект нуждается в ресурсе или может быть полезен другим? Объединитесь с другими проектами.</p>
-            <p><a class="btn btn-default" href="/Games/ConnectToGame">Подключиться к нетворкингу <i class="fa fa-chevron-right text-primary"></i></a></p>
-
-        </div>
-
-        <div class="col-md-10">
-            <h3 class="text-info">3. Проверьте, с кем вы уже сотрудничаете</h3>
-            <p>Все ранее созданные связи проектов отображаются в виде графа. Проверьте, с кем вы же установили контакт.</p>
-            <p><a class="btn btn-default" href="/connections/MyConnections">Проверить связи <i class="fa fa-chevron-right text-primary"></i></a></p>
-
+        <div class="col-xs-12">
+            <a href="/Account/Profile/" class="btn btn-primary col-xs-12 col-md-4">Начать общаться</a>
         </div>
     </div>
+    <input type="hidden" class="pageName" value="trustedPage" />
+    <div class="col-md-10">
+        <h2 class="text-primary">Что дальше?</h2>
+        <hr />
+
+        <input type="hidden" class="pageName" value="trustedPage" />
+        @Html.Partial("_StatusBar")
+
+        <h3 class="text-info">1. Создайте свой первый проект</h3>
+        <p>Проекты необходимы для построения связей. Заполните минимально необходимую информацию о проекте</p>
+        <p><a class="btn btn-default" href="/projects/create">Создать проект <i class="fa fa-chevron-right text-primary"></i></a></p>
+    </div>
+
+    <div class="col-md-10">
+        <h3 class="text-info">2. Станьте участником нетворкинга</h3>
+        <p>Ваш проект нуждается в ресурсе или может быть полезен другим? Объединитесь с другими проектами.</p>
+        <p><a class="btn btn-default" href="/Games/ConnectToGame">Подключиться к нетворкингу <i class="fa fa-chevron-right text-primary"></i></a></p>
+
+    </div>
+
+    <div class="col-md-10">
+        <h3 class="text-info">3. Проверьте, с кем вы уже сотрудничаете</h3>
+        <p>Все ранее созданные связи проектов отображаются в виде графа. Проверьте, с кем вы же установили контакт.</p>
+        <p><a class="btn btn-default" href="/connections/MyConnections">Проверить связи <i class="fa fa-chevron-right text-primary"></i></a></p>
+
+    </div>
+</div>
 }
 else
 {

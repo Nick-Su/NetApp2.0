@@ -5049,6 +5049,9 @@ a.badge:focus {
   margin-bottom: 30px;
   background-image: url('/Images/4.jpg');
 }
+.profilePhoto {
+    background-image: url('/Images/profile.jpg');
+}
 .jumbotron h1,
 .jumbotron .h1 {
   /*color: inherit;*/
