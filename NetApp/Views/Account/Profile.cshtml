@@ -10,20 +10,37 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="class="col-md-12 col-xs-12 jumbotron">
-    @Html.ValidationSummary(true, "")
+<div class="row">
+    <div class="class=" col-md-12 col-xs-12">
+        @Html.ValidationSummary(true, "")
+        <div class="col-md-4">
+            <p><img src=@Model.photoProfile width="200"></p>
+        </div>
+        <div class="col-md-4">
+            <p>Имя: @Html.EditorFor(model => model.FirstName)</p>
+            <p>Фамилия: @Html.EditorFor(model => model.LastName)</p>
+            <p>Email: @Html.EditorFor(model => model.Email)</p>
+        </div>
+        <!--div class="col-md-4">
+            @using (Ajax.BeginForm("ProjectsShow", new AjaxOptions { UpdateTargetId = "results" }))
+            {
+                <input type="submit" value="Поиск" />
+            }
+            <div id="results"></div>
+        </div-->
     <div class="col-md-4">
-        <p><img src=@Model.photoProfile width="200"></p>
-    </div>
-    <div class="col-md-4">
-        <p>Имя: @Html.EditorFor(model => model.FirstName)</p>
-        <p>Фамилия: @Html.EditorFor(model => model.LastName)</p>
-        <p>Email: @Html.EditorFor(model => model.Email)</p>
+        @using (Ajax.BeginForm("CreateProject", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            <input type="text" name="name" />
+            <input type="submit" value="Создать" />
+        }
+        <div id="results"></div>
     </div>
 
-    <div class="col-xs-12">
-        <div>
-            <input type="submit" value="Сохранить" />
+        <div class="col-xs-12">
+            <div>
+                <input type="submit" value="Сохранить" />
+            </div>
         </div>
     </div>
 </div>

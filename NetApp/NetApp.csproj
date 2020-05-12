@@ -667,6 +667,8 @@
     <Content Include="Scripts\common\notifications.js" />
     <Content Include="Scripts\common\projects.js" />
     <Content Include="Scripts\common_clients.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -880,6 +882,9 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Connections\GameGraph.cshtml" />
+    <Content Include="Views\Projects\ProjectsShow.cshtml" />
+    <Content Include="Views\Projects\CreateProject.cshtml" />
+    <Content Include="Views\Games\pixiShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

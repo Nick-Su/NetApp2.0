@@ -563,6 +563,14 @@ namespace NetApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //Перенаправление на ProjectController
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateProject(string Name)
+        {
+            return RedirectToAction("CreateProject("+Name+")");
+        }
+
         internal class ChallengeResult : HttpUnauthorizedResult
         {
             public ChallengeResult(string provider, string redirectUri)

@@ -1258,6 +1258,12 @@ namespace NetApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // Pixi example
+        public ActionResult pixiShow()
+        {
+            return View();
+        }
     }
 
     static class MyExtensions
@@ -1378,3 +1384,4 @@ namespace NetApp.Controllers
 //    }
 //    return false;
 //}
+

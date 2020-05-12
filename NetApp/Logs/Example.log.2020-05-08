@@ -1,0 +1,4 @@
+2020-05-08 02:34:38,861  DEBUG Games BackToGame()[JSON]
+2020-05-08 02:34:38,867  DEBUG Games BackToGame()[JSON]
+2020-05-08 02:35:16,204  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-05-08 02:36:01,895  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).

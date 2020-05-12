@@ -1,0 +1,11 @@
+﻿@model IEnumerable<NetApp.Models.Project>
+
+    <div id="searchresults">
+        <h3>Проекты @ViewBag.UserName</h3>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>@item.Name</li>
+            }
+        </ul>
+    </div>
