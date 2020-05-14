@@ -885,6 +885,9 @@
     <Content Include="Views\Projects\ProjectsShow.cshtml" />
     <Content Include="Views\Projects\CreateProject.cshtml" />
     <Content Include="Views\Games\pixiShow.cshtml" />
+    <Content Include="Views\Account\ProjectsShow.cshtml" />
+    <Content Include="Views\Account\CreateProject.cshtml" />
+    <Content Include="Views\Account\CreatResource.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

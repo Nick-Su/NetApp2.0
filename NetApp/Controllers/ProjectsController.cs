@@ -176,21 +176,21 @@ namespace NetApp.Controllers
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult ProjectsShow()
+        public IEnumerable<Project> ProjectsShow()
         {
-            try
-            {
+            //try
+            //{
                 log.Debug("Project ProjectsShow()");
                 var uid = User.Identity.GetUserId();
                 ViewBag.UserName = User.Identity.GetUserName();
-                return View(db.Projects.Where(t => t.AuthorId == uid).ToList());
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message);
-            }
+                return db.Projects.Where(t => t.AuthorId == uid).ToList();
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error(ex.Message);
+            //}
 
-            return View("~/Views/Shared/Error.cshtml");
+            //return ;
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace NetApp.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProject(string Name)
+        public int CreateProject(string Name)
         {
             Project project = new Project();
             try
@@ -215,19 +215,19 @@ namespace NetApp.Controllers
                 {
                     db.Projects.Add(project);
                     db.SaveChanges();
-                    return RedirectToAction("ProjectsShow");
+                    return 1;
                 }
                 var uid = User.Identity.GetUserId();
                 //ViewBag.UserName = User.Identity.GetUserName();
                 //return View(db.Projects.Where(t => t.AuthorId == uid).ToList());
 
-                return View(db.Projects.Where(t => t.AuthorId == uid).ToList());
+                return 2;
             }
             catch (Exception ex)
             {
                 log.Error(ex.Message);
             }
-            return View("~/Views/Shared/Error.cshtml");
+            return 0;
         }
 
         // GET: Projects/Edit/5

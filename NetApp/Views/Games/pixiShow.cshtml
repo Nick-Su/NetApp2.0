@@ -5,16 +5,4 @@
 }
 
 @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js")
-<script>
-    const app = new PIXI.Application({ antialias: true });
-    document.body.appendChild(app.view);
-
-    const graphics = new PIXI.Graphics();
-
-    // Rectangle
-    graphics.beginFill(0xDE3249);
-    graphics.drawRect(50, 50, 100, 100);
-    graphics.endFill();
-
-    app.stage.addChild(graphics);
-</script>
+@Scripts.Render("~/scripts/src/pixi/simple.js")

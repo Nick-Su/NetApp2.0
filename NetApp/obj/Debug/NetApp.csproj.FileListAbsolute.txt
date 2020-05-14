@@ -629,6 +629,7 @@ C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\bin\Microso
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.csprojAssemblyReference.cache
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.Migrations.Identity.InitialCreate.resources
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.Migrations.Identity.InitialIdentity.resources
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.Migrations.Identity.UserFIO.resources
@@ -697,4 +698,3 @@ C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\N
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.csproj.CopyComplete
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.dll
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.pdb
-C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.csprojAssemblyReference.cache

@@ -1,0 +1,6 @@
+﻿@model NetApp.Models.Project 
+@Html.AntiForgeryToken()
+    <div>
+        @Ajax.ActionLink(Model.Name, "CreatResource", new { nameProject = @Model.Name }, 
+                new AjaxOptions { UpdateTargetId = "resource" })
+    </div>
