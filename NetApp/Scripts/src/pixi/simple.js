@@ -1,11 +1,12 @@
-﻿let width = window.innerWidth; //получаем ширину экрана
-let height = window.innerHeight; // получаем высоту экрана
-const app = new PIXI.Application(width, height);
+//import * as PIXI from '../pixi.js-legacy';
+let width = window.innerWidth; //???????? ?????? ??????
+let height = window.innerHeight; // ???????? ?????? ??????
+const app = new PIXI.Application();//(width, height);
 document.body.appendChild(app.view);
 
 const graphics = new PIXI.Graphics();
 
-// Rectangle
+// RectangleK 
 graphics.beginFill(0xDE3249);
 graphics.drawRect(50, 50, 100, 100);
 graphics.endFill();

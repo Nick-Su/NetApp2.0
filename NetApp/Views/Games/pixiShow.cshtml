@@ -4,5 +4,8 @@
     ViewBag.Title = "Pixi";
 }
 
-@Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js")
-@Scripts.Render("~/scripts/src/pixi/simple.js")
+@Scripts.Render("~/scripts/src/pixijs-legacy/node_modules/pixi.js-legacy/dist/pixi-legacy.js")
+
+<div id="pixiCanvas" class="col-md-4">
+    @Scripts.Render("~/scripts/src/pixi/simple.js")
+</div>

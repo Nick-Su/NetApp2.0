@@ -888,6 +888,7 @@
     <Content Include="Views\Account\ProjectsShow.cshtml" />
     <Content Include="Views\Account\CreateProject.cshtml" />
     <Content Include="Views\Account\CreatResource.cshtml" />
+    <Content Include="Views\Games\pixiCanvas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
