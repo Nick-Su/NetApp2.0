@@ -1,98 +1,99 @@
-//import * as PIXI from '../pixi.js-legacy';
-let width = window.innerWidth; //???????? ?????? ??????
-let height = window.innerHeight; // ???????? ?????? ??????
-const app = new PIXI.Application();//(width, height);
+﻿//import * as PIXI from '../pixi.js-legacy';
+let width = window.innerWidth/2; //???????? ?????? ??????
+let height = window.innerHeight/2; // ???????? ?????? ??????
+let serialRectangle = 0;
+let resText;
+let RectanglePositions = [50, 150];
+const colors = [0xFFFF0B, 0xFF700B, 0x4286f4, 0x4286f4, 0xf441e8, 0x8dff6d, 0x41ccc9, 0xe03375, 0x95e032, 0x77c687, 0x43ba5b, 0x0ea3ba];
+const style = new PIXI.TextStyle({ fontSize: 12 });
+//const style = new PIXI.TextStyle({
+//    fontFamily: 'Arial',
+//    fontSize: 36,
+//    fontStyle: 'italic',
+//    fontWeight: 'bold',
+//    fill: ['#ffffff', '#00ff99'], // gradient
+//    stroke: '#4a1850',
+//    strokeThickness: 5,
+//    dropShadow: true,
+//    dropShadowColor: '#000000',
+//    dropShadowBlur: 4,
+//    dropShadowAngle: Math.PI / 6,
+//    dropShadowDistance: 6,
+//    wordWrap: true,
+//    wordWrapWidth: 440,
+//});
+const app = new PIXI.Application({ backgroundColor: 0xffffff });
 document.body.appendChild(app.view);
 
 const graphics = new PIXI.Graphics();
+const textureButton = PIXI.Texture.from('../Images/btnPlus.jpg');
+const buttonPositions = [
+    175, 75
+];
+const button = new PIXI.Sprite(textureButton);
 
-// RectangleK 
-graphics.beginFill(0xDE3249);
-graphics.drawRect(50, 50, 100, 100);
-graphics.endFill();
+button.anchor.set(0.5);
+button.x = buttonPositions[0*2];
+button.y = buttonPositions[0 * 2 + 1];
 
-// Rectangle + line style 1
-graphics.lineStyle(2, 0xFEEB77, 1);
-graphics.beginFill(0x650A5A);
-graphics.drawRect(200, 50, 100, 100);
-graphics.endFill();
+button.interactive = true;
 
-// Rectangle + line style 2
-graphics.lineStyle(10, 0xFFBD01, 1);
-graphics.beginFill(0xC34288);
-graphics.drawRect(350, 50, 100, 100);
-graphics.endFill();
+button
+    // Mouse & touch events are normalized into
+    // the pointer* events for handling different
+    // button events.
+    .on('pointerdown', createResourse)
 
-// Rectangle 2
-graphics.lineStyle(2, 0xFFFFFF, 1);
-graphics.beginFill(0xAA4F08);
-graphics.drawRect(530, 50, 140, 100);
-graphics.endFill();
+button.scale.set(0.1);
+app.stage.addChild(button);
 
-// Circle
-graphics.lineStyle(0); // draw a circle, set the lineStyle to zero so the circle doesn't have an outline
-graphics.beginFill(0xDE3249, 1);
-graphics.drawCircle(100, 250, 50);
-graphics.endFill();
 
-// Circle + line style 1
-graphics.lineStyle(2, 0xFEEB77, 1);
-graphics.beginFill(0x650A5A, 1);
-graphics.drawCircle(250, 250, 50);
-graphics.endFill();
+function createResourse()
+{
+    let newWin = window.open("about:blank", "hello", "width=200,height=300");
 
-// Circle + line style 2
-graphics.lineStyle(10, 0xFFBD01, 1);
-graphics.beginFill(0xC34288, 1);
-graphics.drawCircle(400, 250, 50);
-graphics.endFill();
+    newWin.document.write(
+        "<!DOCTYPE HTML><html><head><script src='../scripts/src/pixijs-legacy/node_modules/pixi.js-legacy/dist/pixi-legacy.js'></script></head><body><p>Ресурс:</p><input type='text' id='nameResourse'><script src='../scripts/src/pixi/createResourse.js'></script></body></html>"
+    );
+}
 
-// Ellipse + line style 2
-graphics.lineStyle(2, 0xFFFFFF, 1);
-graphics.beginFill(0xAA4F08, 1);
-graphics.drawEllipse(600, 250, 80, 50);
-graphics.endFill();
+function createRectangle(buttonRes, nameRes)
+{
+   // RectanglePositions[0] = 50;
+    //idColor = 1;
+    //graphics.beginFill(colors[idColor]);
+    if (serialRectangle == 3)
+    {
+        RectanglePositions[0] = 50;
+        RectanglePositions[1] += 70;
+        //graphics.drawRect(RectanglePositions[0], RectanglePositions[1], 50, 50);
+        buttonRes.anchor.set(0.5);
+        buttonRes.x = RectanglePositions[0];
+        buttonRes.y = RectanglePositions[1];
 
-// draw a shape
-graphics.beginFill(0xFF3300);
-graphics.lineStyle(4, 0xffd900, 1);
-graphics.moveTo(50, 350);
-graphics.lineTo(250, 350);
-graphics.lineTo(100, 400);
-graphics.lineTo(50, 350);
-graphics.closePath();
-graphics.endFill();
+        resText = new PIXI.Text(nameRes, style);
+        //resText = new PIXI.Text("финансы", style);
+        resText.x = RectanglePositions[0];
+        resText.y = RectanglePositions[1]+15;
 
-// draw a rounded rectangle
-graphics.lineStyle(2, 0xFF00FF, 1);
-graphics.beginFill(0x650A5A, 0.25);
-graphics.drawRoundedRect(50, 440, 100, 100, 16);
-graphics.endFill();
+        serialRectangle = 0;
+    }
+    else
+    {
+        RectanglePositions[0] = 60 * serialRectangle + 50;
+        buttonRes.anchor.set(0.5);
+        buttonRes.x = RectanglePositions[0];
+        buttonRes.y = RectanglePositions[1];
 
-// draw star
-graphics.lineStyle(2, 0xFFFFFF);
-graphics.beginFill(0x35CC5A, 1);
-graphics.drawStar(360, 370, 5, 50);
-graphics.endFill();
+        resText = new PIXI.Text(nameRes, style);
+        //resText = new PIXI.Text("финансы", style);
+        resText.x = RectanglePositions[0];
+        resText.y = RectanglePositions[1] + 5;
+        //graphics.drawRect(RectanglePositions[0], RectanglePositions[1], 50, 50);
+        serialRectangle += 1;
+    }
+    //graphics.endFill();
 
-// draw star 2
-graphics.lineStyle(2, 0xFFFFFF);
-graphics.beginFill(0xFFCC5A, 1);
-graphics.drawStar(280, 510, 7, 50);
-graphics.endFill();
-
-// draw star 3
-graphics.lineStyle(4, 0xFFFFFF);
-graphics.beginFill(0x55335A, 1);
-graphics.drawStar(470, 450, 4, 50);
-graphics.endFill();
-
-// draw polygon
-const path = [600, 370, 700, 460, 780, 420, 730, 570, 590, 520];
-
-graphics.lineStyle(0);
-graphics.beginFill(0x3500FA, 1);
-graphics.drawPolygon(path);
-graphics.endFill();
-
-app.stage.addChild(graphics);
+    app.stage.addChild(buttonRes);
+    app.stage.addChild(resText);
+}
