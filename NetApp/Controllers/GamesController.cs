@@ -1264,6 +1264,11 @@ namespace NetApp.Controllers
         {
             return View();
         }
+
+        public ActionResult pixiCanvas()
+        {
+            return View();
+        }
     }
 
     static class MyExtensions
