@@ -697,4 +697,3 @@ C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\N
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.csproj.CopyComplete
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.dll
 C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.pdb
-C:\Users\danil_000\Documents\GitHub\NetApp2.0-clone\NetApp2.0\NetApp\obj\Debug\NetApp.csprojAssemblyReference.cache

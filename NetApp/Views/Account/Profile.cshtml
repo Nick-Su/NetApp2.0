@@ -4,21 +4,66 @@
     ViewBag.Title = "Мой профиль";
 }
 
-<h2>Редактировать данные профиля</h2>
 
+@Html.AntiForgeryToken()
 
-    @Html.AntiForgeryToken()
+    <div id="results"> 
+        <h2>Персональные данные пользователя</h2>
 
-<div class="row">
+        <div class="col-md-12 col-xs-12">
+            @Html.ValidationSummary(true, "")
+            <div class="col-md-6 col-xs-12 col-sm-12">
+                <p><img src=@Model.photoProfile width="100%" height="100%"></p>
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                    <div class="col-md-6 col-xs-6 col-sm-6">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control maxMinWidth" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                    <div class="col-md-6 col-xs-6 col-sm-6">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control maxMinWidth" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                    <div class="col-md-6 col-xs-6 col-sm-6">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control maxMinWidth" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@using (Ajax.BeginForm("aboutUser", new AjaxOptions { UpdateTargetId = "results" })) //, InsertionMode = InsertionMode.InsertAfter }))
+{
+    <!--div class="row">
+        <div class="class=" col-md-12 col-xs-12">
+            <div class="col-xs-12">
+                <input type="submit" value="Сохранить" />
+            </div>
+        </div>
+    </div-->
+}
+<ul class="nav nav-pills navbar-fixed-bottom">
+    <li>@Ajax.ActionLink("Профиль", "aboutUser", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li>@Ajax.ActionLink("Проекты", "ProjectsShow", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li>@Ajax.ActionLink("Ресурсы", "CreatResource", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li>@Ajax.ActionLink("Запросы", "", new AjaxOptions { UpdateTargetId = "results" })</li>
+</ul>
+<!--div class="row">
     <div class="class=" col-md-12 col-xs-12">
-        @Html.ValidationSummary(true, "")
+        Html.ValidationSummary(true, "")
         <div class="col-md-4">
-            <p><img src=@Model.photoProfile width="200"></p>
+            <p><img src=Model.photoProfile width="200"></p>
         </div>
         <div class="col-md-4">
-            <p>Имя:     @Html.EditorFor(model => model.FirstName)</p>
-            <p>Фамилия: @Html.EditorFor(model => model.LastName)</p>
-            <p>Email:   @Html.EditorFor(model => model.Email)</p>
+            <p>Имя:     Html.EditorFor(model => model.FirstName)</p>
+            <p>Фамилия: Html.EditorFor(model => model.LastName)</p>
+            <p>Email:   Html.EditorFor(model => model.Email)</p>
         </div>
         <!--div class="col-md-4">
         using (Ajax.BeginForm("ProjectsShow", new AjaxOptions { UpdateTargetId = "results" }))
@@ -27,34 +72,21 @@
         }
         <div id="results"></div>
     </div-->
-        <div class="col-md-4">
-            <div>Мои проекты: </div>
-            @using (Ajax.BeginForm("ProjectsShow", new AjaxOptions { UpdateTargetId = "results", InsertionMode = InsertionMode.InsertAfter }))
-            {
-                <input type="text" name="name" />
-                <input type="submit" value="Создать" />
-            }
-            <div id="results"></div>
-        </div>
-        <div class="col-md-4">
-            <div>
-                Ресурсы проекта <div id="resources"></div>
-                @using (Ajax.BeginForm("ProjectsShow", new AjaxOptions { UpdateTargetId = "resources", InsertionMode = InsertionMode.InsertAfter }))
-                {
-                    <input type="text" name="name" />
-                    <input type="submit" value="Создать" />
-                }
-                <div id="resources"></div>
-            </div>
-        </div>
-
-        <!--using (Html.BeginForm())-->
-
-        <div class="col-xs-12">
-            <div>
-                <input type="submit" value="Сохранить" />
-            </div>
-        </div>
-
-    </div>
+<!--div class="col-md-4">
+    <div>Мои проекты: </div>
+   using (Ajax.BeginForm("ProjectsShow", new AjaxOptions { UpdateTargetId = "results", InsertionMode = InsertionMode.InsertAfter }))
+    {
+        <input type="text" name="name" />
+        <input type="submit" value="Создать" />
+    }
+    <div id="results"></div>
+</!--div>
+<div class="col-md-4">
+    <p>Мне необходимо:</p>
+    <iframe frameborder="no" src="/Games/pixiCanvas"></iframe>
 </div>
+<div class="col-md-4">
+    <p>Могу поделиться:</p>
+    <iframe frameborder="no" src="/Games/pixiCanvas"></iframe>
+</div>
+<!--using (Html.BeginForm())-->

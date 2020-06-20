@@ -585,7 +585,53 @@ namespace NetApp.Controllers
         {
             try
             {
+                Game thisGame = db.Games.FirstOrDefault(s => s.GameId == gid);
+                ViewBag.colRoom = thisGame.NumTacts;
                 log.Debug("Games Introduction()");
+                return View();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return View("~/Views/Shared/Error.cshtml");
+        }
+
+        public ActionResult Game()
+        {
+            try
+            {
+                log.Debug("Games Game()");
+                return View();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return View("~/Views/Shared/Error.cshtml");
+        }
+        public ActionResult Rooms()
+        {
+            try
+            {
+                //ViewBag.idRoom = idRoom;
+                log.Debug("Games Game()");
+                return View();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return View("~/Views/Shared/Error.cshtml");
+        }
+        public ActionResult Room()
+        {
+            try
+            {
+                log.Debug("Games Game()");
                 return View();
             }
             catch (Exception ex)
@@ -1104,6 +1150,11 @@ namespace NetApp.Controllers
             }
 
             return Json("error", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult play()
+        {
+            return View();
         }
 
         public JsonResult IsOnlyGivenNeedTypes(int gid)

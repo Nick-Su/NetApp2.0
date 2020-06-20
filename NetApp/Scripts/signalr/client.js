@@ -11,7 +11,7 @@ $(function () {
     function GetGidFromServer() {
         $.ajax({
             type: "GET",
-            url: '/Games/BackToGame',
+            url: '../Games/BackToGame',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: successFunc,
@@ -102,7 +102,9 @@ $(function () {
     timerHub.client.showMyGroupNumber = function (groupNumber, tableId) {
         $(".tid").val(tableId);
         let res = "#" + groupNumber;
-        $('.groupNum').html(res);
+        $('.idRoom').html(res);
+        //let;
+        $('.frameRooms').html('<iframe width="100%" height="100%" frameborder="yes" src="/online/Games/Rooms?idRoom=' + groupNumber+'"></iframe>');
         $('.group-num').val(groupNumber);
     }
 
@@ -129,7 +131,7 @@ $(function () {
         }
 
         function showSyncBtn() {
-            let url = '/Games/WhereAmI/?gid=' + gid;
+            let url = '../Games/WhereAmI/?gid=' + gid;
             let text = "Вернуться " + '<i class="' + "glyphicon glyphicon-refresh" + '"></i>';
             let clname = "btn btn-xs btn-warning animate-flicker syncStage";
             let btnSync = '| <a href="' + url + '" class="' + clname + '">' + text + '</a>';
@@ -141,50 +143,50 @@ $(function () {
 
     function checkWhereRedirect(currentStage, userPosition) {
         if (currentStage == 0 && userPosition != "waitRoom" && userPosition != "trustedPage") {
-            window.location.href = "/Games/WaitRoom/?gid=" + gid;
+            window.location.href = "../Games/WaitRoom/?gid=" + gid;
         }
 
         if (currentStage == 1 && userPosition != "groupTransition" && userPosition != "trustedPage") {
-            window.location.href = "/Games/WaitUntilRedirectTable/?gid=" + gid;
+            window.location.href = "../Games/WaitUntilRedirectTable/?gid=" + gid;
         }
 
         if (currentStage == 2 && userPosition != "introduction" && userPosition != "trustedPage") {
-            window.location.href = "/Games/Introduction/?gid=" + gid;
+            window.location.href = "../Games/Introduction/?gid=" + gid;
         }
 
         if (currentStage == 3 && userPosition != "networking" && userPosition != "trustedPage") {
-            window.location.href = "/Games/ShowPlayRoom?gid=" + gid + "&tid=0&tnum=0";
+            window.location.href = "../Games/ShowPlayRoom?gid=" + gid + "&tid=0&tnum=0";
         }
 
         if (currentStage == 4 && userPosition != "requestsList" && userPosition != "trustedPage") {
            
-            window.location.href = "/ConnectionRequests/Index/?gid=" + gid + '&toLeaderBoard=1' + '&after=' + 10;;
+            window.location.href = "../ConnectionRequests/Index/?gid=" + gid + '&toLeaderBoard=1' + '&after=' + 10;;
 
         }
 
         if (currentStage == 5 && userPosition != "endGame" && userPosition != "trustedPage") {
-            window.location.href = "/Games/EndGame/?gid=" + gid;
+            window.location.href = "../Games/EndGame/?gid=" + gid;
         }
     }
 
     timerHub.client.redirectToTransition = function (gid) {
-        window.location.href = "/Games/WaitUntilRedirectTable/?gid=" + gid;
+        window.location.href = "../Games/WaitUntilRedirectTable/?gid=" + gid;
     }
 
     timerHub.client.redirectToIntroduction = function (gid) {
-        window.location.href = "/Games/Introduction/?gid=" + gid;
+        window.location.href = "../Games/Introduction/?gid=" + gid;
     }
 
     timerHub.client.redirectToPlayRoom = function (gid) {
-        window.location.href = "/Games/ShowPlayRoom?gid=" + gid + "&tid=0&tnum=0";
+        window.location.href = "../Games/ShowPlayRoom?gid=" + gid + "&tid=0&tnum=0";
     }
 
     timerHub.client.redirectToAproveRequests = function (gid) {
-        window.location.href = "/Games/TimeToAproveRequests/?gid="+gid;
+        window.location.href = "../Games/TimeToAproveRequests/?gid="+gid;
     }
 
     timerHub.client.redirectUsersToEndGame = function (gid) {
-        window.location.href = "/Games/EndGame/?gid=" + gid;
+        window.location.href = "../Games/EndGame/?gid=" + gid;
     }
 
     $.connection.hub.start().done(function () {
@@ -209,7 +211,7 @@ $(function () {
             function GetGidFromServer() {
                 $.ajax({
                     type: "GET",
-                    url: '/Games/BackToGame',
+                    url: '../Games/BackToGame',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: successFunc,
@@ -228,7 +230,7 @@ $(function () {
             function checkGameStatus() {
                 $.ajax({
                     type: "GET",
-                    url: '/Games/GetGameStatus',
+                    url: '../Games/GetGameStatus',
                     contentType: "application/json; charset=utf-8",
                     data: { gameId: gid },
                     dataType: "json",
@@ -287,7 +289,7 @@ $(function () {
             timerHub.server.showMyGroupNumber(gid);
             setInterval(getMyGroupNumber, 1000);
             function getMyGroupNumber() {
-                if ($('.groupNum').is(':empty')) {
+                if ($('.idRoom').is(':empty')) {
                     timerHub.server.showMyGroupNumber(gid);
                 }
                 else {

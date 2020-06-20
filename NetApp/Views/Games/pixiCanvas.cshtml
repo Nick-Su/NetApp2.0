@@ -1,9 +1,11 @@
-﻿<!doctype html>
-<html>
-<head>
-    @Scripts.Render("~/scripts/src/pixijs-legacy/node_modules/pixi.js-legacy/dist/pixi-legacy.js")
-</head>
+﻿@{
+    Layout = null;
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/scripts/src/pixijs-legacy/node_modules/pixi.js-legacy/dist/pixi-legacy.js")
+
 <body>
     <script src="../scripts/src/pixi/simple.js"></script>
 </body>
-</html>

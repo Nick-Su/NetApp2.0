@@ -1,1 +1,20 @@
 ﻿
+@{
+    Layout = null;
+}
+
+@Scripts.Render("~/scripts/src/pixijs-legacy/node_modules/pixi.js-legacy/dist/pixi-legacy.js")
+        <script src="../scripts/pixi/projects.js"></script>
+        <div id="canvasProject"></div>
+        <div id="prompt-form-container" style="display: none;">
+            <form id="prompt-form" method="post">
+                <div width="80%" height="50%" style="position: absolute;top: 10%;left: 10%;background-color: white">
+                    <div id="prompt-message">
+                    </div>
+                    <div>
+                        <p style="text-align: left"><button>Сохранить</button></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+ 

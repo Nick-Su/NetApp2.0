@@ -11,33 +11,61 @@
     <script src="~/Scripts/signalr/subgroup.js"></script>
 }
 
-<div class="container nopadding">
+<div class="col-xs-12 nopadding">
+    <div class="col-xs-10 nopadding">
+        <h4 class="text-info">До начала нетворкинга осталось:</h4>
+    </div>
+    <div class="col-xs-2 nopadding">
+        <h4 class="text-secondary">
+            <span id="timer-mins" class="itemValue text-danger"></span><span id="timer" class="itemValue text-danger"></span>
+        </h4>
+    </div>
+    <h4 class="text-secondary">У вас есть <span id="introTimer" class="itemValue text-danger"></span> сек. чтобы представиться и коротко рассказать о себе и своем проекте.</h4>
+</div>
+<!--div class="nopadding">
+    <!--div class="col-xs-3 ">
+        <h4 class="text-secondary">
+            <span id="introTimer" class="itemValue text-danger"></span>
+        </h4>
+    </div--
+</div-->
+<div id="results">
+    <h3>Нетворкинг</h3>
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <iframe height="100%" width="100%" frameborder="1" src="/online/Games/Rooms"></iframe>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-10 col-xs-10 col-sm-10">
+                <iframe height="100%" width="100%" frameborder="1" src="/online/Games/Room"></iframe>
+            </div>
+            <div class="col-md-2 col-xs-2 col-sm-2" style="border:2px">
+                <p>Поле c инфой о проекте</p>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+
+<ul class="nav nav-pills navbar-fixed-bottom">
+    <li>@Ajax.ActionLink("Запросы", "", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li>@Ajax.ActionLink("Игра", "Game", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li>@Ajax.ActionLink("Чат", "", new AjaxOptions { UpdateTargetId = "results" })</li>
+</ul>
+<!---->
+<div class="container nopadding col-md-12">
 
     <input type="hidden" class="pageName" value="introduction" />
 
-    <input type="hidden" class="group-num" value="" />
+    <input type="hidden" id="idRoom" class="group-num" value="" />
     <input type="hidden" class="tid" value="" />
-
+<!--
     <h3 class="text-primary text-left">Группа <b><span class="text-danger groupNum"></span></b> Время познакомиться!</h3>
+    -->
     <hr />
 
     @Html.Partial("_StatusBar")
-
-    <div class="col-xs-12 nopadding">
-        <div class="col-xs-10 nopadding">
-            <h4 class="text-info">До начала нетворкинга осталось:</h4>
-        </div>
-        <div class="col-xs-2 nopadding">
-            <h4 class="text-secondary">
-                <span id="timer-mins" class="itemValue text-danger"></span><span id="timer" class="itemValue text-danger"></span>
-            </h4>
-        </div>
-    </div>
-
-    <br /><br />
-    <div class="nopadding">
-        <h6 class="text-secondary">У вас есть <span id="timeToPlayer"></span> сек. чтобы представиться и коротко рассказать о своем проекте.</h6>
-    </div>
+    
 
     <hr class="nopadding" />
     <div class="wait-other-warning"></div>
@@ -51,11 +79,7 @@
             <h5 class="text-success currentSpeaker"></h5>
         </div>
 
-        <div class="col-xs-3 ">
-            <h4 class="text-secondary">
-                <span id="introTimer" class="itemValue text-danger"></span>
-            </h4>
-        </div>
+        
         <hr class="nopadding" />
     </div>
 

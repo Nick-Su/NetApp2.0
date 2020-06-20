@@ -1,6 +1,22 @@
-﻿@model NetApp.Models.Project 
-@Html.AntiForgeryToken()
-    <div>
-        @Ajax.ActionLink(Model.Name, "CreatResource", new { nameProject = @Model.Name }, 
-                new AjaxOptions { UpdateTargetId = "resource" })
+﻿@Scripts.Render("~/scripts/src/pixijs-legacy/node_modules/pixi.js-legacy/dist/pixi-legacy.js")
+
+    <div class="col-md-12">
+        <h2>Мои проекты:</h2>
+
+        <div>
+            <iframe width="100%" height="100%" frameborder="no" src="/Projects/CreateProject"></iframe>
+        </div>
+        <!--div id="projectsShow"></div>
+
+        <div id="prompt-form-container" style="display: none;">
+            <form id="prompt-form" method="post">
+                <div style="position: absolute;top: 50%;left: 50%;transform: translate(-80%, -60%);background-color: white">
+                    <div id="prompt-message">
+                    </div>
+                    <div>
+                        <p style="text-align: left"><button>Сохранить</button></p>
+                    </div>
+                </div>
+            </form>
+        </div-->
     </div>

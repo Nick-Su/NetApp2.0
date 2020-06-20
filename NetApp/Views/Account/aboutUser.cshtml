@@ -1,0 +1,31 @@
+﻿@model NetApp.Models.RegisterViewModel
+
+    <h2>Персональные данные пользователя</h2>
+
+    <div class="col-md-12 col-xs-12">
+        @Html.ValidationSummary(true, "")
+        <div class="col-md-6">
+            <p><img src=@Model.photoProfile width="100%" height="100%"></p>
+        </div>
+        <div class="col-md-6 col-xs-12 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                <div class="col-md-6 col-xs-6 col-sm-6">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control maxMinWidth" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                <div class="col-md-6 col-xs-6 col-sm-6">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control maxMinWidth" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                <div class="col-md-6 col-xs-6 col-sm-6">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control maxMinWidth" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>

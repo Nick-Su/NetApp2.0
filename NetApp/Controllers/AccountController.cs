@@ -171,7 +171,7 @@ namespace NetApp.Controllers
                   //  var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                   //  await UserManager.SendEmailAsync(user.Id, "Подтверждение регистрации melt.events", "Подтвердите регистрацию кликнув по ссылке <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Account", "Profile");
 
                     //var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     //var callbackUrl = Url.Action(
@@ -198,18 +198,49 @@ namespace NetApp.Controllers
             ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
             {
-                RegisterViewModel model = new RegisterViewModel { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email};
-                ViewBag.user = model;
+                RegisterViewModel model = new RegisterViewModel { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email };
+                //ViewBag.user = model;
                 var uid = User.Identity.GetUserId();
                 model.photoProfile = Url.Content("~/Images/profile.jpg");
                 return View(model);
             }
             return RedirectToAction("Login", "Account");
         }
+
+        //Профиль пользователя
+        [HttpPost]
+        public async Task<ActionResult> Profile(RegisterViewModel model)
+        {
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                //RegisterViewModel model = new RegisterViewModel { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email };
+                //ViewBag.user = model;
+                //var uid = User.Identity.GetUserId();
+                //model.photoProfile = Url.Content("~/Images/profile.jpg");
+                return View();
+            }
+            return RedirectToAction("Login", "Account");
+        }
+
+        //Профиль пользователя
+        public async Task<ActionResult> aboutUser()
+        {
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                RegisterViewModel model = new RegisterViewModel { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email};
+                ViewBag.user = model;
+                var uid = User.Identity.GetUserId();
+                model.photoProfile = Url.Content("~/Images/profile.jpg");
+                return PartialView(model);
+            }
+            return RedirectToAction("Login", "Account");
+        }
         
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Profile(RegisterViewModel model)
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> aboutUser(RegisterViewModel model)
         {
             var uid = User.Identity.GetUserId();
             ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
@@ -233,22 +264,22 @@ namespace NetApp.Controllers
                 ModelState.AddModelError("", "Пользователь не найден");
             }
 
-            return View(model);
+            return PartialView(model);
         }
 
         //Ajax запрос добавления проекта
         public PartialViewResult ProjectsShow(string name)
         {
             Project myProject = new Project();
-            myProject.Name = name;
-            return PartialView (myProject);
+            ///myProject.Name = name;
+            return PartialView();//(myProject);
         }
 
         //Создание ресурса для проекта
-        [ValidateAntiForgeryToken]
-        public PartialViewResult CreatResource(string nameProject)
+        ///[ValidateAntiForgeryToken]
+        public ActionResult CreatResource()//(string nameProject)
         {
-            ViewBag.nameProject = nameProject;
+            //ViewBag.nameProject = nameProject;
             return PartialView();
         }
 

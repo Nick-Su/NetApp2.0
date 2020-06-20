@@ -21,21 +21,36 @@ namespace NetApp.Controllers
         private DatabaseContext db = new DatabaseContext();
         private static ILog log = LogManager.GetLogger("ErrorLog");
 
-        //// GET: Projects
-        //public ActionResult Index()
-        //{
-        //    try
-        //    {
-        //        log.Debug("Project Index()");
-        //        var uid = User.Identity.GetUserId();
-        //        return View(db.Projects.Where(t => t.AuthorId == uid).ToList());
-        //    } catch (Exception ex)
-        //    {
-        //        log.Error(ex.Message);
-        //    }
+        // GET: Projects
+        public ActionResult Index()
+        {
+            try
+            {
+                log.Debug("Project Index()");
+                var uid = User.Identity.GetUserId();
+                return View(db.Projects.Where(t => t.AuthorId == uid).ToList());
+            } catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
 
-        //    return View("~/Views/Shared/Error.cshtml");
-        //}
+            return View("~/Views/Shared/Error.cshtml");
+        }
+
+        public ActionResult CreateProject()
+        {
+            try
+            {
+                log.Debug("Projects CreateProject()");
+                return View();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return View("~/Views/Shared/Error.cshtml");
+        }
 
         public JsonResult GetMyProjects()
         {
@@ -142,93 +157,34 @@ namespace NetApp.Controllers
         }
 
         // POST: Projects/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id,Name,Whom,What,Feature,Author,AuthorId,Date, Contact")] Project project)
-        //{
-
-        //    try
-        //    {
-        //        log.Debug("Project Create()[POST]");
-
-        //        project.AuthorId = User.Identity.GetUserId();
-        //        project.Date = DateTime.Now;
-
-        //        if (ModelState.IsValid)
-        //        {
-        //            db.Projects.Add(project);
-        //            db.SaveChanges();
-        //            return RedirectToAction("Index");
-        //        }
-
-        //        return View(project);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Error(ex.Message);
-        //    }
-        //    return View("~/Views/Shared/Error.cshtml");
-        //}
-
-        /// <summary>
-        /// Ajax-запрос получения списка проектов 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public IEnumerable<Project> ProjectsShow()
-        {
-            //try
-            //{
-                log.Debug("Project ProjectsShow()");
-                var uid = User.Identity.GetUserId();
-                ViewBag.UserName = User.Identity.GetUserName();
-                return db.Projects.Where(t => t.AuthorId == uid).ToList();
-            //}
-            //catch (Exception ex)
-            //{
-            //    log.Error(ex.Message);
-            //}
-
-            //return ;
-        }
-
-        /// <summary>
-        /// Ajax-запрос создания проекта 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public int CreateProject(string Name)
+        public ActionResult Create([Bind(Include = "Id,Name,Whom,What,Feature,Author,AuthorId,Date, Contact")] Project project)
         {
-            Project project = new Project();
+
             try
             {
                 log.Debug("Project Create()[POST]");
 
                 project.AuthorId = User.Identity.GetUserId();
-                //project.Date = DateTime.Now;
-                project.Name = Name;
+                project.Date = DateTime.Now;
 
                 if (ModelState.IsValid)
                 {
                     db.Projects.Add(project);
                     db.SaveChanges();
-                    return 1;
+                    return RedirectToAction("Index");
                 }
-                var uid = User.Identity.GetUserId();
-                //ViewBag.UserName = User.Identity.GetUserName();
-                //return View(db.Projects.Where(t => t.AuthorId == uid).ToList());
 
-                return 2;
+                return View(project);
             }
             catch (Exception ex)
             {
                 log.Error(ex.Message);
             }
-            return 0;
+            return View("~/Views/Shared/Error.cshtml");
         }
+
 
         // GET: Projects/Edit/5
         public ActionResult Edit(int? id)

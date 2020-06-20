@@ -93,6 +93,8 @@ namespace NetApp.Models
 
         //Фото пользователя
         [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Фото")]
         public string photoProfile { get; set; }
     }
 

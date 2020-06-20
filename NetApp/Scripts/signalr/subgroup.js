@@ -25,7 +25,7 @@ $(function () {
             function GetGidFromServer() {
                 $.ajax({
                     type: "GET",
-                    url: '/Games/BackToGame',
+                    url: '../Games/BackToGame',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: successFunc,
