@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Знакомство участников";
 }
-
 @section scripts {
     <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
     <script src="~/signalr/hubs"></script>
@@ -11,16 +10,17 @@
     <script src="~/Scripts/signalr/subgroup.js"></script>
 }
 
+
 <div class="col-xs-12 nopadding">
     <div class="col-xs-10 nopadding">
-        <h4 class="text-info">До начала нетворкинга осталось:</h4>
+        <h5 class="text-info">До начала нетворкинга осталось:</h5>
     </div>
     <div class="col-xs-2 nopadding">
-        <h4 class="text-secondary">
+        <h5 class="text-secondary">
             <span id="timer-mins" class="itemValue text-danger"></span><span id="timer" class="itemValue text-danger"></span>
-        </h4>
+        </h5>
     </div>
-    <h4 class="text-secondary">У вас есть <span id="introTimer" class="itemValue text-danger"></span> сек. чтобы представиться и коротко рассказать о себе и своем проекте.</h4>
+    <h5 class="text-secondary">У вас есть <span id="introTimer" class="itemValue text-danger"></span> сек. чтобы представиться и коротко рассказать о себе и своем проекте.</h5>
 </div>
 <!--div class="nopadding">
     <!--div class="col-xs-3 ">
@@ -29,17 +29,24 @@
         </h4>
     </div--
 </div-->
+<ul class="nav nav-tabs">
+    <li>@Ajax.ActionLink("Запросы", "", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li>@Ajax.ActionLink("Игра", "Game", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li>@Ajax.ActionLink("Чат", "", new AjaxOptions { UpdateTargetId = "results" })</li>
+</ul>
 <div id="results">
     <h3>Нетворкинг</h3>
     <div class="col-md-12">
-        <div class="col-md-12">
-            <iframe height="100%" width="100%" frameborder="1" src="/online/Games/Rooms"></iframe>
+        <div  class="col-md-12">
+            <iframe id="roomsFrame" name="roomsFrame"></iframe>
         </div>
         <div class="col-md-12">
             <div class="col-md-10 col-xs-10 col-sm-10">
-                <iframe height="100%" width="100%" frameborder="1" src="/online/Games/Room"></iframe>
+                <div class="sizer">
+                    <iframe id="roomFrame" name="roomFrame"></iframe>
+                </div>
             </div>
-            <div class="col-md-2 col-xs-2 col-sm-2" style="border:2px">
+            <div class="col-md-2 col-xs-2 col-sm-2">
                 <p>Поле c инфой о проекте</p>
             </div>
         </div>
@@ -47,11 +54,6 @@
     </div>
 </div>
 
-<ul class="nav nav-pills navbar-fixed-bottom">
-    <li>@Ajax.ActionLink("Запросы", "", new AjaxOptions { UpdateTargetId = "results" })</li>
-    <li>@Ajax.ActionLink("Игра", "Game", new AjaxOptions { UpdateTargetId = "results" })</li>
-    <li>@Ajax.ActionLink("Чат", "", new AjaxOptions { UpdateTargetId = "results" })</li>
-</ul>
 <!---->
 <div class="container nopadding col-md-12">
 
@@ -59,13 +61,13 @@
 
     <input type="hidden" id="idRoom" class="group-num" value="" />
     <input type="hidden" class="tid" value="" />
-<!--
-    <h3 class="text-primary text-left">Группа <b><span class="text-danger groupNum"></span></b> Время познакомиться!</h3>
-    -->
+    <!--
+        <h3 class="text-primary text-left">Группа <b><span class="text-danger groupNum"></span></b> Время познакомиться!</h3>
+        -->
     <hr />
 
     @Html.Partial("_StatusBar")
-    
+
 
     <hr class="nopadding" />
     <div class="wait-other-warning"></div>
@@ -79,7 +81,7 @@
             <h5 class="text-success currentSpeaker"></h5>
         </div>
 
-        
+
         <hr class="nopadding" />
     </div>
 
@@ -90,7 +92,7 @@
     </div>
 
     <hr class="nopadding" />
-  
+
     <div class="nopadding">
         <h4 class="text-info">В приветственной речи не забудьте упомянуть:</h4>
         <ul>
@@ -109,7 +111,10 @@
     let searchParamsGid = new URLSearchParams(window.location.search);
     searchParamsGid.has('gid');
     let gid = searchParamsGid.get('gid');
- 
+    document.getElementById("roomsFrame").src = "/online/Games/Rooms?gid=" + gid;
+    document.getElementById("roomFrame").src = "/online/Games/Room?gid=" + gid;
+
+
 
     $(document).ready(function () {
 
@@ -137,6 +142,17 @@
                 $("#timeToPlayer").html(timedata);
             }
         }
+
+        postInfToFrames();
+
+        function postInfToFrames() {
+            docFrameRooms = window.frames.roomsFrame.contentDocument;
+            docFrameRoom = window.frames.roomFrame.contentDocument;
+            let curSpec = $(".currentSpeaker").val();
+            let myRoom = document.getElementById("idRoom").val();
+            let tabSpecs = $(".table-waiters-wrap").val();
+            docFrameRoom.getElementById("currentSpeaker").val(curSpec);
+        }
     });
 
 </script>
@@ -147,6 +163,21 @@
     }
 
     h5 {
-        font-size: 1.15em;
+        font-size: 1.0em;
     }
+
+    .sizer {
+        position: relative;
+        width: 100%;
+        padding-top: 75%;
+        border: 2px;
+    }
+
+        .sizer iframe {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+        }
 </style>

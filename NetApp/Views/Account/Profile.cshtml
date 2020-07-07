@@ -7,6 +7,12 @@
 
 @Html.AntiForgeryToken()
 
+    <ul class="nav nav-tabs">
+        <li>@Ajax.ActionLink("Профиль", "aboutUser", new AjaxOptions { UpdateTargetId = "results" })</li>
+        <li>@Ajax.ActionLink("Проекты", "ProjectsShow", new AjaxOptions { UpdateTargetId = "results" })</li>
+        <li>@Ajax.ActionLink("Ресурсы", "CreatResource", new AjaxOptions { UpdateTargetId = "results" })</li>
+        <li>@Ajax.ActionLink("Запросы", "", new AjaxOptions { UpdateTargetId = "results" })</li>
+    </ul>
     <div id="results"> 
         <h2>Персональные данные пользователя</h2>
 
@@ -38,6 +44,7 @@
             </div>
         </div>
     </div>
+
 @using (Ajax.BeginForm("aboutUser", new AjaxOptions { UpdateTargetId = "results" })) //, InsertionMode = InsertionMode.InsertAfter }))
 {
     <!--div class="row">
@@ -48,12 +55,7 @@
         </div>
     </div-->
 }
-<ul class="nav nav-pills navbar-fixed-bottom">
-    <li>@Ajax.ActionLink("Профиль", "aboutUser", new AjaxOptions { UpdateTargetId = "results" })</li>
-    <li>@Ajax.ActionLink("Проекты", "ProjectsShow", new AjaxOptions { UpdateTargetId = "results" })</li>
-    <li>@Ajax.ActionLink("Ресурсы", "CreatResource", new AjaxOptions { UpdateTargetId = "results" })</li>
-    <li>@Ajax.ActionLink("Запросы", "", new AjaxOptions { UpdateTargetId = "results" })</li>
-</ul>
+
 <!--div class="row">
     <div class="class=" col-md-12 col-xs-12">
         Html.ValidationSummary(true, "")

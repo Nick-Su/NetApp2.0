@@ -612,7 +612,7 @@ namespace NetApp.Controllers
 
             return View("~/Views/Shared/Error.cshtml");
         }
-        public ActionResult Rooms()
+        public ActionResult Rooms(int gid)
         {
             try
             {
@@ -627,10 +627,11 @@ namespace NetApp.Controllers
 
             return View("~/Views/Shared/Error.cshtml");
         }
-        public ActionResult Room()
+        public ActionResult Room(int gid)
         {
             try
             {
+                ViewBag.gid = gid;
                 log.Debug("Games Game()");
                 return View();
             }

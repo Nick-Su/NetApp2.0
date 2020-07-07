@@ -4,14 +4,33 @@
 <h3>Нетворкинг</h3>
 <div class="col-md-12">
     <div class="col-md-12">
-        <iframe width="80%" height="100%" frameborder="0" src="/online/Games/Rooms"></iframe>
+        <iframe src="/online/Games/Rooms?gid="@ViewBag.gid></iframe>
     </div>
     <div class="col-md-12">
-        <div class="col-md-8 col-xs-8 col-sm-8">
-            <iframe width="100%" height="100%" frameborder="1" src="/online/Games/Room"></iframe>
+        <div class="col-md-10 col-xs-10 col-sm-10">
+            <div class="sizer">
+                <iframe src="/online/Games/Room?gid="@ViewBag.gid></iframe>
+            </div>
         </div>
-        <div class="col-md-4 col-xs-4 col-sm-4" style="border:2px">
+        <div class="col-md-2 col-xs-2 col-sm-2">
             <p>Поле для чата</p>
         </div>
     </div>
 </div>
+
+<style>
+    .sizer {
+        position: relative;
+        width: 100%;
+        padding-top: 75%;
+        border: 2px;
+    }
+
+        .sizer iframe {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+        } 
+</style>

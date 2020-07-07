@@ -2,10 +2,70 @@
     Layout = null;
 }
 
+@Scripts.Render("~/scripts/jquery-3.3.1.js")
 @Scripts.Render("~/scripts/src/pixijs-legacy/node_modules/pixi.js-legacy/dist/pixi-legacy.js")
+@Scripts.Render("~/Scripts/jquery.signalR-2.4.1.js")
+@Scripts.Render("~/signalr/hubs")
+@Scripts.Render("~/Scripts/signalr/client.js")
+@Scripts.Render("~/Scripts/signalr/common.js")
+@Scripts.Render("~/Scripts/signalr/subgroup.js")
 
 
-    <div id="roomDiv"></div>
-    <input type="hidden" id="colRoom" value="3">
+<canvas id="roomDiv"></canvas>
+<input type="hidden" id="colRoom" value="3">
+<input type="hidden" class="pageName" value="room" />
+
+<input type="hidden" id="idRoom" class="group-num" value="" />
+<input type="hidden" class="tid" value="" />
+<input type="hidden" id="currentSpeaker" value="" />
+<div class="table-waiters-wrap"></div>
+
+@Html.Partial("_StatusBar")
 
 <script src="../scripts/pixi/room.js"></script>
+<script src="../scripts/src/VideoAndAudioControl.js"></script>
+
+<script type="text/javascript">
+    let searchParamsGid = new URLSearchParams(window.location.search);
+    searchParamsGid.has('gid');
+    let gid = searchParamsGid.get('gid');
+
+    $(document).ready(function () {
+
+        $("#txtGroupName").val(gid);
+
+        GetTimeToPersonIntroduction();
+
+        function GetTimeToPersonIntroduction() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetTimeToIntroduction", "Games")',
+                contentType: "application/json; charset=utf-8",
+                data: { gid: gid },
+                dataType: "json",
+                success: handleData,
+                error: error
+            });
+
+            function error() {
+                console.log("Can't get time data");
+            }
+
+            function handleData(json) {
+                var timedata = JSON.parse(json);
+                $("#timeToPlayer").html(timedata);
+            }
+        }
+    });
+
+</script>
+
+<style>
+    video {
+        transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
+        -moz-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+    }
+</style>

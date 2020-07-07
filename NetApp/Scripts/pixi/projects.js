@@ -2,7 +2,7 @@
 //let heightWin = window.innerHeight; 
 let serialRectangle = 0; // Порядковый номер проекта
 let resText; // текст на панели с проектами
-let RectanglePositions = [50, 40];
+let RectanglePositions = [50, 0];
 let textPosition = [25, 60];
 const textureButton = PIXI.Texture.from('../Images/btnPlus.jpg');
 
@@ -13,19 +13,19 @@ const style = new PIXI.TextStyle({
     wordWrapWidth: 40
 });
 let projects = [];
-class project {
-    constructor(name, whatDoProject, whomProject, featureProject) {
-        this.name = name;
-        this.whatDoProject = whatDoProject;
-        this.whomProject = whomProject;
-        this.featureProject = featureProject;
-    }
-}
+//class project {
+//    constructor(name, whatDoProject, whomProject, featureProject) {
+//        this.name = name;
+//        this.whatDoProject = whatDoProject;
+//        this.whomProject = whomProject;
+//        this.featureProject = featureProject;
+//    }
+//}
 
 const app = new PIXI.Application({autoResize: true, resolution: devicePixelRatio,backgroundColor: 0xffffff});
 //backgroundColor: 0xffffff
-//let doc = document.getElementById('canvasProject');
-document.body.appendChild(app.view);
+document.getElementById("canvasProject").appendChild(app.view);
+//document.body.appendChild(app.view);
 
 window.addEventListener('resize', resize);
 // Resize function window
@@ -76,46 +76,49 @@ function createProject()
     );
 }
 
-//function createRectangle(nameProject, whatDo, whom, feature)
-//{
-//    projects.push(new project(nameProject, whatDo, whom, feature));
-//    idColor = 0;
-//    graphics.beginFill(colors[idColor]);
-//    if (serialRectangle % 3 != 0)
-//    {
-//        RectanglePositions[0] = 60 * (serialRectangle % 3) + 50;
-//        textPosition[0] = 60 * (serialRectangle % 3) + 40;
-//        //buttonRes.anchor.set(0.5);
-//        //buttonRes.x = RectanglePositions[0];
-//        //buttonRes.y = RectanglePositions[1];
-//    }
-//    else 
-//    {
-//        RectanglePositions[0] = 50;
-//        RectanglePositions[1] += 80;
-//        textPosition[0] = 40;
-//        textPosition[1] += 80;
-//    }
+getProjects();
 
-//    resText = new PIXI.Text(nameProject, style);
-//    resText.x = textPosition[0];
-//    resText.y = textPosition[1];
+function drawProject(project)
+{
+    //projects.push(new project(nameProject, whatDo, whom, feature));
+    idColor = 0;
+    graphics.beginFill(colors[idColor]);
+    if (serialRectangle % 3 != 0)
+    {
+        RectanglePositions[0] = 60 * (serialRectangle % 3) + 50;
+        textPosition[0] = 60 * (serialRectangle % 3) + 40;
+        //buttonRes.anchor.set(0.5);
+        //buttonRes.x = RectanglePositions[0];
+        //buttonRes.y = RectanglePositions[1];
+    }
+    else 
+    {
+        RectanglePositions[0] = 50;
+        RectanglePositions[1] += 80;
+        textPosition[0] = 40;
+        textPosition[1] += 80;
+    }
 
-//    graphics.drawRect(RectanglePositions[0], RectanglePositions[1], 50, 50);
-//    graphics.interactive = true;
-//    graphics
-//        // Mouse & touch events are normalized into
-//        // the pointer* events for handling different
-//        // button events.
-//        .on('pointerdown', e => showDetailsProject(serialRectangle-1))
+    resText = new PIXI.Text(project.Name, style);
+    resText.x = textPosition[0];
+    resText.y = textPosition[1];
 
-//    serialRectangle += 1;
-//    graphics.endFill();
-//    app.stage.addChild(graphics);
-//    app.stage.addChild(resText);
-//}
+    graphics.drawRect(RectanglePositions[0], RectanglePositions[1], 50, 50);
+    graphics.interactive = true;
+    graphics
+        // Mouse & touch events are normalized into
+        // the pointer* events for handling different
+        // button events.
+        .on('pointerdown', e => showDetailsProject(serialRectangle-1))
 
-//function showDetailsProject(id) {
+    serialRectangle += 1;
+    graphics.endFill();
+    resText.Texture = graphics;
+    //app.stage.addChild(graphics);
+    app.stage.addChild(resText);
+}
+
+function showDetailsProject(id) {
 //    //alert(projects[id].name);
 
 //    // Показать полупрозрачный DIV, чтобы затенить страницу
@@ -199,4 +202,25 @@ function createProject()
 //    //    });
 //    //};
 
-//}
+}
+//Загружаем все проекты пользователя
+function getProjects() {
+    // Создаём объект класса XMLHttpRequest
+    const request = new XMLHttpRequest();
+    const url = "../Projects/GetMyProjects";
+
+    request.open('GET', url);
+    request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+    // ждем ответ от сервера 
+    request.addEventListener("readystatechange", () => {
+        if (request.readyState === 4 && request.status === 200) {
+            projects = JSON.parse(JSON.parse(request.responseText)).userProjectsList;
+            for (let i = 0; i < projects.length; i++) {
+                drawProject(projects[i]);
+            }
+        }
+    });
+    // Выполняем запрос 
+    request.send();
+}

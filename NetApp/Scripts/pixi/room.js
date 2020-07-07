@@ -10,11 +10,10 @@ const playersTexture = [
 //    PIXI.Texture.from('../Images/left.png'),
 //    PIXI.Texture.from('../Images/right.png')
 //]
-
-const app = new PIXI.Application({ autoResize: true, resolution: devicePixelRatio, backgroundColor: 0xffffff });
+let view = document.getElementById("roomDiv");
+const app = new PIXI.Application({ view: view, autoResize: true, resolution: devicePixelRatio, backgroundColor: 0xffffff });
 //backgroundColor: 0xffffff
 //let doc = document.getElementById('canvasProject');
-document.getElementById("roomDiv").appendChild(app.view);
 
 window.addEventListener('resize', resize);
 // Resize function window
@@ -23,7 +22,7 @@ function resize() {
     const parent = app.view.parentNode;
 
     // Resize the renderer
-    app.renderer.resize(parent.clientWidth, parent.clientHeight*0.3);
+    app.renderer.resize(parent.clientWidth, parent.clientHeight);
 
     // You can use the 'screen' property as the renderer visible
     // area, this is more useful than view.width/height because

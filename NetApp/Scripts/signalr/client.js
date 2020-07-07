@@ -1,6 +1,11 @@
-﻿
+﻿//import { create } from "d3";
+
 $(function () {
     let searchParams = new URLSearchParams(window.location.search);
+    let pageName = $(".pageName").val();
+    let SpeakersCount;
+    let SpeakerNames = [];
+    let app;
     searchParams.has('gid');
     let gid = searchParams.get('gid');
 
@@ -41,8 +46,9 @@ $(function () {
     };
     
     timerHub.client.updateIntroductionGroupTime = function (time, username) {
-  
-        $(".currentSpeaker").html('<b>' + username + '</b>');
+
+        alert(username);
+        $(".currentSpeaker").val(username);
         $('#introTimer').html('<em>' + htmlEncode(time) + '</em>');     
     }
 
@@ -61,12 +67,21 @@ $(function () {
 
     function buildWaitingSpeakersTable(parsed) {
 
-        let currentSpeaker = $('.currentSpeaker b').text();
+        let currentSpeaker = $('.currentSpeaker').val();
         let junkarr = parsed.wplayers.slice(0);
 
         let index = 0;
         let arrLength = junkarr.length;
+        let firstInput = true;
+        //console.log(arrLength);
         for (let i = 0; i < arrLength; i++) {
+            if ((firstInput) && (pageName == "room")) {
+                SpeakersCount = arrLength;
+                SpeakerNames = junkarr;
+                //createCanvas();
+                //buildSpeakersField(junkarr);
+                firstInput = false;
+            }
             if (junkarr[i] == currentSpeaker) {
                 index = i;
                 break;
@@ -102,9 +117,9 @@ $(function () {
     timerHub.client.showMyGroupNumber = function (groupNumber, tableId) {
         $(".tid").val(tableId);
         let res = "#" + groupNumber;
-        $('.idRoom').html(res);
+        $('.idRoom').val(res);
         //let;
-        $('.frameRooms').html('<iframe width="100%" height="100%" frameborder="yes" src="/online/Games/Rooms?idRoom=' + groupNumber+'"></iframe>');
+        //$('.frameRooms').html('<iframe width="100%" height="100%" frameborder="yes" src="/online/Games/Rooms?idRoom=' + groupNumber+'"></iframe>');
         $('.group-num').val(groupNumber);
     }
 
@@ -155,12 +170,12 @@ $(function () {
         }
 
         if (currentStage == 3 && userPosition != "networking" && userPosition != "trustedPage") {
-            window.location.href = "../Games/ShowPlayRoom?gid=" + gid + "&tid=0&tnum=0";
+            window.location.href = "../ShowPlayRoom?gid=" + gid + "&tid=0&tnum=0";
         }
 
         if (currentStage == 4 && userPosition != "requestsList" && userPosition != "trustedPage") {
            
-            window.location.href = "../ConnectionRequests/Index/?gid=" + gid + '&toLeaderBoard=1' + '&after=' + 10;;
+            window.location.href = "../Games/ConnectionRequests/Index/?gid=" + gid + '&toLeaderBoard=1' + '&after=' + 10;;
 
         }
 
@@ -178,7 +193,7 @@ $(function () {
     }
 
     timerHub.client.redirectToPlayRoom = function (gid) {
-        window.location.href = "../Games/ShowPlayRoom?gid=" + gid + "&tid=0&tnum=0";
+        window.location.href = "../ShowPlayRoom?gid=" + gid + "&tid=0&tnum=0";
     }
 
     timerHub.client.redirectToAproveRequests = function (gid) {
@@ -323,13 +338,123 @@ $(function () {
             function checkMyUrl() {
                 timerHub.server.getGameStage(gid);
             }
+
+
             
         });
     });
 });
 
+//Вспомогательные ф-ции
 // Кодирование тегов
 function htmlEncode(value) {
     var encodedValue = $('<div />').text(value).html();
     return encodedValue;
+}
+
+//PixiJS
+// Создание Canvas
+function createCanvas() {
+    let view = document.getElementById("roomDiv");
+    app = new PIXI.Application({ view: view, autoResize: true, resolution: devicePixelRatio, backgroundColor: 0xffffff });
+
+    window.addEventListener('resize', resize);
+    // Resize function window
+    function resize() {
+        // Get the p
+        const parent = app.view.parentNode;
+
+        // Resize the renderer
+        app.renderer.resize(parent.clientWidth, parent.clientHeight);
+
+        // You can use the 'screen' property as the renderer visible
+        // area, this is more useful than view.width/height because
+        // it handles resolution
+        //rect.position.set(app.screen.width, app.screen.height);
+    }
+
+    resize();
+}
+// Создаем игроков в комнате
+function buildSpeakersField(spekears) {
+    const playersTexture = [
+        PIXI.Texture.from('../Images/profile.jpg')
+    ]
+
+    for (let i = 0; i < spekears.length; i++) {
+        playersTexture[0].baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+
+        createPlayers(
+            Math.floor(Math.random() * app.screen.width),
+            Math.floor(Math.random() * app.screen.height),
+        );
+    }
+
+    function createPlayers(x, y) {
+        // create our little bunny friend..
+        const player = new PIXI.Sprite(playersTexture[0]);
+
+        // enable the bunny to be interactive... this will allow it to respond to mouse and touch events
+        player.interactive = true;
+
+        // this button mode will mean the hand cursor appears when you roll over the bunny with your mouse
+        player.buttonMode = true;
+
+        // center the bunny's anchor point
+        player.anchor.set(0.5);
+
+        // make it a bit bigger, so it's easier to grab
+        player.scale.set(0.08);
+
+        // setup events for mouse + touch using
+        // the pointer events
+        player
+            .on('pointerdown', onDragStart)
+            .on('pointerup', onDragEnd)
+            .on('pointerupoutside', onDragEnd)
+            .on('pointermove', onDragMove);
+
+        // For mouse-only events
+        // .on('mousedown', onDragStart)
+        // .on('mouseup', onDragEnd)
+        // .on('mouseupoutside', onDragEnd)
+        // .on('mousemove', onDragMove);
+
+        // For touch-only events
+        // .on('touchstart', onDragStart)
+        // .on('touchend', onDragEnd)
+        // .on('touchendoutside', onDragEnd)
+        // .on('touchmove', onDragMove);
+
+        // move the sprite to its designated position
+        player.x = x;
+        player.y = y;
+
+        // add it to the stage
+        app.stage.addChild(player);
+    }
+
+    function onDragStart(event) {
+        // store a reference to the data
+        // the reason for this is because of multitouch
+        // we want to track the movement of this particular touch
+        this.data = event.data;
+        this.alpha = 0.5;
+        this.dragging = true;
+    }
+
+    function onDragEnd() {
+        this.alpha = 1;
+        this.dragging = false;
+        // set the interaction data to null
+        this.data = null;
+    }
+
+    function onDragMove() {
+        if (this.dragging) {
+            const newPosition = this.data.getLocalPosition(this.parent);
+            this.x = newPosition.x;
+            this.y = newPosition.y;
+        }
+    }
 }
