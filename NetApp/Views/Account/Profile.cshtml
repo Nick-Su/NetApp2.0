@@ -7,54 +7,203 @@
 
 @Html.AntiForgeryToken()
 
-    <ul class="nav nav-tabs">
-        <li>@Ajax.ActionLink("Профиль", "aboutUser", new AjaxOptions { UpdateTargetId = "results" })</li>
-        <li>@Ajax.ActionLink("Проекты", "ProjectsShow", new AjaxOptions { UpdateTargetId = "results" })</li>
-        <li>@Ajax.ActionLink("Ресурсы", "CreatResource", new AjaxOptions { UpdateTargetId = "results" })</li>
-        <li>@Ajax.ActionLink("Запросы", "", new AjaxOptions { UpdateTargetId = "results" })</li>
-    </ul>
-    <div id="results"> 
-        <h2>Персональные данные пользователя</h2>
+<input type="hidden" id="header" value="profile" />
+<div id="modDialogProject" class="modal fade">
+    <div id="dialogContentProject" class="modal-dialog"></div>
+</div>
+<div id="modDialogResourceNeed" class="modal fade">
+    <div id="dialogContentResourceNeed" class="modal-dialog"></div>
+</div>
+<div id="modDialogResource" class="modal fade">
+    <div id="dialogContentResource" class="modal-dialog"></div>
+</div>
 
-        <div class="col-md-12 col-xs-12">
-            @Html.ValidationSummary(true, "")
-            <div class="col-md-6 col-xs-12 col-sm-12">
-                <p><img src=@Model.photoProfile width="100%" height="100%"></p>
+<ul class="nav nav-tabs">
+    <!--
+        <li class="active" id="profileLink">Ajax.ActionLink("Профиль", "aboutUser", new AjaxOptions { UpdateTargetId = "results" })</li>
+        <li id="progectsLink">Ajax.ActionLink("Проекты", "ProjectsShow", new AjaxOptions { UpdateTargetId = "results"})</li>
+        <li id="resourcesLink">Ajax.ActionLink("Ресурсы", "CreatResource", new AjaxOptions { UpdateTargetId = "results" })</li>
+        <li id="requestsLink">Ajax.ActionLink("Запросы", "Requests", new AjaxOptions { UpdateTargetId = "results" })</li>
+    -->
+    <li><button type="button" id="profileBtn" class="btn btn-default active">Профиль</button></li>
+    <li><button type="button" id="projectBtn" class="btn btn-default">Проекты</button></li>
+    <li><button type="button" id="resourceBtn" class="btn btn-default">Ресурсы</button></li>
+    <li><button type="button" id="requestBtn" class="btn btn-default">Запросы</button></li>
+</ul>
+
+<div id="results">
+    <h2>Персональные данные пользователя</h2>
+
+    <div class="col-md-12 col-xs-12">
+        @Html.ValidationSummary(true, "")
+        <div class="col-md-6 col-xs-12 col-sm-12">
+            <p><img src=@Model.photoProfile width="100%" height="100%"></p>
+        </div>
+
+        <div class="col-md-6 col-xs-12 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                <div class="col-md-6 col-xs-6 col-sm-6">
+                    @Html.TextBoxFor(m => m.FirstName, new { id = "FirstName", @class = "form-control maxMinWidth" })
+                </div>
             </div>
-            <div class="col-md-6 col-xs-12 col-sm-12">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
-                    <div class="col-md-6 col-xs-6 col-sm-6">
-                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control maxMinWidth" })
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                <div class="col-md-6 col-xs-6 col-sm-6">
+                    @Html.TextBoxFor(m => m.LastName, new { id = "LastName", @class = "form-control maxMinWidth" })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
-                    <div class="col-md-6 col-xs-6 col-sm-6">
-                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control maxMinWidth" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
-                    <div class="col-md-6 col-xs-6 col-sm-6">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control maxMinWidth" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+                <div class="col-md-6 col-xs-6 col-sm-6">
+                    @Html.TextBoxFor(m => m.Email, new { id = "Email", @class = "form-control maxMinWidth" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
     </div>
+    <div>
+        <button class="btn btn-primary" id="saveButtonProfile">Сохранить</button>
+        <button class="btn btn-primary" id="saveButtonRequests">Сохранить</button>
+        <div><button type="button" class="btn btn-default" id="modal" data-dismiss="modDialogProject">Modal</button></div>
+    </div>
+</div>
 
-@using (Ajax.BeginForm("aboutUser", new AjaxOptions { UpdateTargetId = "results" })) //, InsertionMode = InsertionMode.InsertAfter }))
-{
-    <!--div class="row">
-        <div class="class=" col-md-12 col-xs-12">
-            <div class="col-xs-12">
-                <input type="submit" value="Сохранить" />
-            </div>
-        </div>
-    </div-->
-}
+
+<script>
+        $(document).ready(function () {
+            let header = $("#header").val();
+            let profBtn = $("#profileBtn");
+            let projBtn = $("#projectBtn");
+            let resBtn = $("#resourceBtn");
+            let reqBtn = $("#requestBtn");
+
+            if (header === "profile") {
+                $("#saveButtonProfile").show();
+                $("#saveButtonRequests").hide();
+            }
+            else if (header === "requests") {
+                $("#saveButtonProfile").hide();
+                $("#saveButtonRequests").show();
+            }
+            else {
+                $("#saveButtonProfile").hide();
+                $("#saveButtonRequests").hide();
+            }
+
+            profBtn.on("click", profileView);
+            projBtn.on("click", projectView);
+            resBtn.on("click", resourceView);
+            reqBtn.on("click", requestView);
+
+            getModals();
+
+            window.addEventListener("message", function (e) {
+                modalShow(e.data);
+            },
+                false);
+        });
+
+    function profileView() {
+        removeActiveClass();
+        $("#profileBtn").addClass("active");
+
+        $.get('@Url.Action("aboutUser", "Account")', function (data) {
+            $('#results').html(data);
+        });
+    };
+    function projectView() {
+        removeActiveClass();
+        $("#projectBtn").addClass("active");
+
+        $.get('@Url.Action("ProjectsShow", "Account")', function (data) {
+            $('#results').html(data);
+        });
+    };
+    function resourceView() {
+        removeActiveClass();
+        $("#resourceBtn").addClass("active");
+
+        $.get('@Url.Action("CreatResource", "Account")', function (data) {
+            $('#results').html(data);
+        });
+
+        @*$.get('@Url.Action("CreateResourceItem", "Projects")', function (data) {
+                $('#dialogContentResource').html(data);
+        });*@
+    };
+    function requestView() {
+        removeActiveClass();
+        $("#requestBtn").addClass("active");
+
+        $.get('@Url.Action("Requests", "Account")', function (data) {
+            $('#results').html(data);
+        });
+    };
+
+        $("#saveButtonProfile").on("click", function () {
+            let model = getModel();
+            console.log(model);
+            $.ajax({
+                url: '@Url.Action("editUser", "Account")',
+                type: 'POST',
+                data: JSON.stringify(model),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: false,
+                success: function () {
+                    alert("Сохранение прошло успешно");
+                },
+                error: function (response) {
+                    var msg = response.responseJSON.responseText;
+                    alert("Что-то пошло не так!");
+                    console.log(msg);
+                }
+            });
+        });
+
+        function getModel() {
+        return { model: getData()};
+    };
+        function getData() {
+        return {
+            FirstName: $("#FirstName").val(),
+            LastName: $("#LastName").val(),
+            Email: $("#Email").val(),
+        };
+        };
+        function removeActiveClass() {
+            let list = [
+                $("#profileBtn"),
+                $("#projectBtn"),
+                $("#resourceBtn"),
+                $("#requestBtn")
+            ];
+            for (let i = 0; i < list.length;i++) {
+                list[i].removeClass("active");
+            }
+    };
+    function modalShow(eData) {
+        if (eData === "createProject") {
+
+            console.log($("#modDialogProject").html);
+            window.$('#modDialogProject').modal('show');
+        }
+        else if (eData === "createResourse") {
+
+            $('#modDialogResource').modal('show');
+        }
+    };
+    function getModals() {
+        $.get('@Url.Action("Create", "Projects")', function (data) {
+                window.$('#dialogContentProject').html(data);
+            });
+
+            $.get('@Url.Action("CreateResourceItem", "Projects")', function (data) {
+                window.$('#dialogContentResource').html(data);
+            });
+    };
+</script>
 
 <!--div class="row">
     <div class="class=" col-md-12 col-xs-12">
@@ -74,21 +223,3 @@
         }
         <div id="results"></div>
     </div-->
-<!--div class="col-md-4">
-    <div>Мои проекты: </div>
-   using (Ajax.BeginForm("ProjectsShow", new AjaxOptions { UpdateTargetId = "results", InsertionMode = InsertionMode.InsertAfter }))
-    {
-        <input type="text" name="name" />
-        <input type="submit" value="Создать" />
-    }
-    <div id="results"></div>
-</!--div>
-<div class="col-md-4">
-    <p>Мне необходимо:</p>
-    <iframe frameborder="no" src="/Games/pixiCanvas"></iframe>
-</div>
-<div class="col-md-4">
-    <p>Могу поделиться:</p>
-    <iframe frameborder="no" src="/Games/pixiCanvas"></iframe>
-</div>
-<!--using (Html.BeginForm())-->

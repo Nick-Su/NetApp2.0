@@ -1,0 +1,134 @@
+2020-07-08 23:31:56,872  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:31:56,872  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:31:56,947  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:31:57,065  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:31:58,089  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:31:58,219  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:31:58,303  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:31:58,408  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:31:58,720  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:02,105  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:07,104  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:12,111  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:17,112  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:22,102  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:34,969  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:32:34,973  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:32:35,185  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:35,290  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:35,385  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:40,226  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:45,215  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:50,223  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:32:55,217  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:11,711  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:34:12,232  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:34:13,580  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:34:14,027  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:34:14,384  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:14,564  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:14,657  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:14,782  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:14,933  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:22,565  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:33,252  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:34:33,259  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:34:33,444  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:33,589  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:33,701  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:40,625  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:46,004  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:49,863  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:54,938  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:34:59,508  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:35:04,127  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:35:08,722  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:35:15,807  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:35:18,716  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:37:40,912  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:37:40,914  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:37:41,859  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:37:42,230  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:37:42,437  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:37:42,502  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:37:42,635  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:37:42,797  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:37:42,911  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:37:47,005  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:37:52,016  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:37:57,002  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:38:01,970  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:38:23,847  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:38:23,985  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:38:24,121  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:38:24,407  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:38:24,518  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:38:49,464  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:38:54,458  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:38:59,445  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:39:04,456  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:41:43,520  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:41:43,520  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:41:44,325  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:41:44,456  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:41:44,561  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:41:44,629  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:41:44,713  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:41:44,844  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:41:44,939  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:41:49,478  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:42:05,271  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:42:05,282  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:42:05,457  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:42:05,564  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:42:05,673  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:12,526  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:51:12,526  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:51:12,526  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:51:13,801  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:51:21,522  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:22,190  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:22,860  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:23,556  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:23,666  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:24,346  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:24,924  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:27,649  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:32,622  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:37,812  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:44,021  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:47,638  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:53,037  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:51:57,941  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:02,630  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:19,206  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:52:19,208  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:52:19,341  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:19,522  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:19,661  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:29,605  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:34,607  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:39,619  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:54,631  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:52:59,584  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:53:04,797  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:22,563  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:57:22,563  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:57:23,869  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:57:24,163  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:24,230  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:24,319  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:24,359  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:57:24,413  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:24,488  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:29,027  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:43,709  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:57:43,715  DEBUG Games BackToGame()[JSON]
+2020-07-08 23:57:43,858  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:43,987  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:44,210  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:57:59,126  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:58:04,143  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:58:09,148  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:58:14,174  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2020-07-08 23:58:19,134  ERROR The model backing the 'DatabaseContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).

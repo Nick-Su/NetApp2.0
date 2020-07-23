@@ -879,3 +879,4 @@ C:\Users\danil\Desktop\netApp\NetApp2.0\NetApp\obj\Debug\NetApp.csproj.CoreCompi
 C:\Users\danil\Desktop\netApp\NetApp2.0\NetApp\obj\Debug\NetApp.csproj.CopyComplete
 C:\Users\danil\Desktop\netApp\NetApp2.0\NetApp\obj\Debug\NetApp.dll
 C:\Users\danil\Desktop\netApp\NetApp2.0\NetApp\obj\Debug\NetApp.pdb
+C:\Users\danil\Desktop\netApp\NetApp2.0\NetApp\obj\Debug\NetApp.csprojAssemblyReference.cache

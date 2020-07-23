@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NetApp.Models;
 using Microsoft.Owin.Security;
-
+using System.Net;
 
 namespace NetApp.Controllers
 {
@@ -237,36 +237,46 @@ namespace NetApp.Controllers
             }
             return RedirectToAction("Login", "Account");
         }
-        
-        [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public async Task<ActionResult> aboutUser(RegisterViewModel model)
-        {
-            var uid = User.Identity.GetUserId();
-            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
-            if (user != null)
-            {
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                //user.PhoneNumber = model.phone;
-                user.Email = model.Email;
-                
 
-                IdentityResult result = await UserManager.UpdateAsync(user);
-                
-                if(result.Succeeded)
+        //[ValidateAntiForgeryToken]
+        public ActionResult editUser(RegisterViewModel model)
+        {
+            try
+            {
+                //RegisterViewModel model = new RegisterViewModel();
+                var uid = User.Identity.GetUserId();
+                ApplicationUser user = UserManager.FindByName(User.Identity.Name);
+                //ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+                if (user != null)
                 {
-                    ModelState.AddModelError("", "Что-то пошло не так");
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    //user.PhoneNumber = model.phone;
+                    user.Email = model.Email;
+
+                    UserManager.Update(user);
+                    //IdentityResult result = await UserManager.UpdateAsync(user);
+
+                    //if(result.Succeeded)
+                    //{
+                    //    ModelState.AddModelError("", "Что-то пошло не так");
+                    //}
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Пользователь не найден");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "Пользователь не найден");
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { success = false, responseText = "Error - " + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
-            return PartialView(model);
+            return Json(new { success = true, responseText = "Ok" }, JsonRequestBehavior.AllowGet);
         }
 
+        //public async Task<ActionResult> getUser()
         //Ajax запрос добавления проекта
         public PartialViewResult ProjectsShow(string name)
         {

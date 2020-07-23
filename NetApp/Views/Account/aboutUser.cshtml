@@ -1,31 +1,72 @@
 ﻿@model NetApp.Models.RegisterViewModel
 
-    <h2>Персональные данные пользователя</h2>
+<h2>Персональные данные пользователя</h2>
 
-    <div class="col-md-12 col-xs-12">
-        @Html.ValidationSummary(true, "")
-        <div class="col-md-6">
-            <p><img src=@Model.photoProfile width="100%" height="100%"></p>
+<div class="col-md-12 col-xs-12">
+    @Html.ValidationSummary(true, "")
+    <div class="col-md-6 col-xs-12 col-sm-12">
+        <p><img src=@Model.photoProfile width="100%" height="100%"></p>
+    </div>
+
+    <div class="col-md-6 col-xs-12 col-sm-12">
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+            <div class="col-md-6 col-xs-6 col-sm-6">
+                @Html.TextBoxFor(m => m.FirstName, new { id = "FirstName", @class = "form-control maxMinWidth" })
+            </div>
         </div>
-        <div class="col-md-6 col-xs-12 col-sm-12">
-            <div class="form-group">
-                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
-                <div class="col-md-6 col-xs-6 col-sm-6">
-                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control maxMinWidth" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+            <div class="col-md-6 col-xs-6 col-sm-6">
+                @Html.TextBoxFor(m => m.LastName, new { id = "LastName", @class = "form-control maxMinWidth" })
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.LastName, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
-                <div class="col-md-6 col-xs-6 col-sm-6">
-                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control maxMinWidth" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
-                <div class="col-md-6 col-xs-6 col-sm-6">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control maxMinWidth" })
-                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-6 col-xs-6 col-sm-6 control-label" })
+            <div class="col-md-6 col-xs-6 col-sm-6">
+                @Html.TextBoxFor(m => m.Email, new { id = "Email", @class = "form-control maxMinWidth" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+</div>
+<!--
+<div>
+    <button class="btn btn-primary" id="saveButtonProfile">Сохранить</button>
+</div>
+    -->
+<!--
+<script>
+    $("#saveButtonProfile").on("click", function () {
+            let model = getModel();
+            console.log(model);
+            $.ajax({
+                url: '@Url.Action("editUser", "Account")',
+                type: 'POST',
+                data: JSON.stringify(model),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: false,
+                success: function () {
+                    alert("Сохранение прошло успешно");
+                },
+                error: function (response) {
+                    var msg = response.responseJSON.responseText;
+                    alert("Что-то пошло не так!");
+                    console.log(msg);
+                }
+            });
+        });
+
+    function getModel() {
+        return { model: getData()};
+    };
+    function getData() {
+        return {
+            FirstName: $("#FirstName").val(),
+            LastName: $("#LastName").val(),
+            Email: $("#Email").val(),
+        };
+    };
+</script>
+    -->

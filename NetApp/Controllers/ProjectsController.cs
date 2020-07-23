@@ -52,6 +52,36 @@ namespace NetApp.Controllers
             return View("~/Views/Shared/Error.cshtml");
         }
 
+        public ActionResult CreateResource()
+        {
+            try
+            {
+                log.Debug("Projects CreateResource()");
+                return View();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return View("~/Views/Shared/Error.cshtml");
+        }
+
+        public ActionResult CreateNeedResource()
+        {
+            try
+            {
+                log.Debug("Projects CreateResource()");
+                return View();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return View("~/Views/Shared/Error.cshtml");
+        }
+
         public JsonResult GetMyProjects()
         {
             try
@@ -130,6 +160,55 @@ namespace NetApp.Controllers
             return View("~/Views/Shared/Error.cshtml");
         }
 
+        public ActionResult CreateResourceItem()
+        {
+            try
+            {
+                log.Debug("Project Create()");
+                var context = new IdentityDbContext();
+
+                var user = HttpContext.GetOwinContext()
+                            .GetUserManager<ApplicationUserManager>()
+                            .FindById(User.Identity.GetUserId());
+
+                var result = user.FirstName;
+                result += " ";
+                result += user.LastName;
+
+                @ViewBag.username = result;
+                return PartialView();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return PartialView("~/Views/Shared/Error.cshtml");
+        }
+
+        public ActionResult CreateResourceItemNeed()
+        {
+            try
+            {
+                log.Debug("Project Create()");
+                var context = new IdentityDbContext();
+
+                var user = HttpContext.GetOwinContext()
+                            .GetUserManager<ApplicationUserManager>()
+                            .FindById(User.Identity.GetUserId());
+
+                var result = user.FirstName;
+                result += " ";
+                result += user.LastName;
+
+                @ViewBag.username = result;
+                return PartialView();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return PartialView("~/Views/Shared/Error.cshtml");
+        }
         // GET: Projects/Create
         public ActionResult Create()
         {
@@ -147,19 +226,19 @@ namespace NetApp.Controllers
                 result += user.LastName;
 
                 @ViewBag.username = result;
-                return View();
+                return PartialView();
             }
             catch (Exception ex)
             {
                 log.Error(ex.Message);
             }
-            return View("~/Views/Shared/Error.cshtml");
+            return PartialView("~/Views/Shared/Error.cshtml");
         }
 
-        // POST: Projects/Create
+        // POST: Projects/SaVE
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Whom,What,Feature,Author,AuthorId,Date, Contact")] Project project)
+        public ActionResult Save([Bind(Include = "Id,Name,Whom,What,Feature,Author,AuthorId,Date, Contact")] Project project)
         {
 
             try
@@ -173,16 +252,15 @@ namespace NetApp.Controllers
                 {
                     db.Projects.Add(project);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Profile","Account"); 
                 }
-
-                return View(project);
             }
             catch (Exception ex)
             {
-                log.Error(ex.Message);
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { success = false, responseText = "Error - " + ex.Message }, JsonRequestBehavior.AllowGet);
             }
-            return View("~/Views/Shared/Error.cshtml");
+            return Json(new { success = true, responseText = "Ok" }, JsonRequestBehavior.AllowGet);
         }
 
 

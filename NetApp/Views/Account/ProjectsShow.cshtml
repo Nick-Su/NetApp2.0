@@ -1,25 +1,46 @@
 ﻿@Scripts.Render("~/scripts/src/pixijs-legacy/node_modules/pixi.js-legacy/dist/pixi-legacy.js")
 
-    <!--<div class="col-md-12">-->
-        <h2>Мои проекты:</h2>
+<!--<div class="col-md-12">-->
+   
+<!-- 
+<ul class="nav nav-tabs">
+    <li id="profileLink">Ajax.ActionLink("Профиль", "aboutUser", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li class="active" id="progectsLink">Ajax.ActionLink("Проекты", "ProjectsShow", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li id="resourcesLink">Ajax.ActionLink("Ресурсы", "CreatResource", new AjaxOptions { UpdateTargetId = "results" })</li>
+    <li id="requestsLink">Ajax.ActionLink("Запросы", "Requests", new AjaxOptions { UpdateTargetId = "results" })</li>
+</ul>
+    -->
+<h2>Мои проекты:</h2>
 
-        <div id="frameCreateProject">
-            <iframe frameborder="no" src="/Projects/CreateProject"></iframe>
+<div id="frameCreateProject">
+    <iframe frameborder="no" src="/Projects/CreateProject"></iframe>
+</div>
+
+<!--div id="projectsShow"></div>
+
+<div id="prompt-form-container" style="display: none;">
+    <form id="prompt-form" method="post">
+        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-80%, -60%);background-color: white">
+            <div id="prompt-message">
+            </div>
+            <div>
+                <p style="text-align: left"><button>Сохранить</button></p>
+            </div>
         </div>
-        <!--div id="projectsShow"></div>
-
-        <div id="prompt-form-container" style="display: none;">
-            <form id="prompt-form" method="post">
-                <div style="position: absolute;top: 50%;left: 50%;transform: translate(-80%, -60%);background-color: white">
-                    <div id="prompt-message">
-                    </div>
-                    <div>
-                        <p style="text-align: left"><button>Сохранить</button></p>
-                    </div>
-                </div>
-            </form>
-        </div-->
-    <!--/div-->
+    </form>
+</div-->
+<!--/div-->
+<!--script>
+    $(document).ready(function () {
+        window.addEventListener("message", function (e) {
+            if (e.data === "createProject") {
+                $('#modDialog').modal('show');
+            }
+        },
+            false);
+    });
+    
+</!-script-->
 <style>
     .frameCreateProject {
         position: relative;
@@ -28,6 +49,7 @@
         height: 100vh;
         overflow: hidden;
     }
+
         .frameCreateProject iframe,
         .frameCreateProject object,
         .frameCreateProject embed {

@@ -19,17 +19,23 @@ let disText = [
 //const colors = [0xFFFF0B, 0xFF700B, 0x4286f4, 0x4286f4, 0xf441e8, 0x8dff6d, 0x41ccc9, 0xe03375, 0x95e032, 0x77c687, 0x43ba5b, 0x0ea3ba];
 
 const app = new PIXI.Application({ width:300, height:300, backgroundColor:0xffffff});
-document.body.appendChild(app.view);
+document.getElementById("canvasCreateResource").appendChild(app.view);
 
 const graphics = new PIXI.Graphics();
 //const outlineFilterBlue = new PIXI.filters.OutlineFilter(2, 0x99ff99);
 const texturesButton = [
-    PIXI.Texture.from('../Images/finance.png'),
-    PIXI.Texture.from('../Images/people.png'),
-    PIXI.Texture.from('../Images/transp.png'),
-    PIXI.Texture.from('../Images/instrument.jpg'),
-    PIXI.Texture.from('../Images/btnPlus.jpg')
+    PIXI.Texture.from('https://localhost:44353/Images/finance.png'),
+    PIXI.Texture.from('https://localhost:44353/Images/people.png'),
+    PIXI.Texture.from('https://localhost:44353/Images/transp.png'),
+    PIXI.Texture.from('https://localhost:44353/Images/instrument.jpg'),
+    PIXI.Texture.from('https://localhost:44353/Images/btnPlus.jpg'),
+    //PIXI.Texture.from('https://melt.events/online/Images/finance.png'),
+    //PIXI.Texture.from('https://melt.events/online/Images/people.png'),
+    //PIXI.Texture.from('https://melt.events/online/Images/transp.png'),
+    //PIXI.Texture.from('https://melt.events/online/Images/instrument.jpg'),
+    //PIXI.Texture.from('https://melt.events/online/Images/btnPlus.jpg'),
 ];
+
 const buttonPositions = [
     25, 25,
     80, 25,
@@ -105,31 +111,32 @@ function filterOn(object) {
 
 function addResourse()
 {
-    nameRes = document.getElementById('nameResourse');
-    choosedBtn.tint = tintBefor;
-    window.opener.createRectangle(choosedBtn, nameRes.value);
-    window.close();
+
+    //nameRes = document.getElementById('nameResourse');
+    //choosedBtn.tint = tintBefor;
+    //window.opener.createRectangle(choosedBtn, nameRes.value);
+    //window.close();
 }
 
-function createRectangle()
-{
-   // RectanglePositions[0] = 50;
-    idColor = 1;
-    graphics.beginFill(colors[idColor]);
-    if (serialRectangle == 3)
-    {
-        RectanglePositions[0] = 50;
-        RectanglePositions[1] += 60;
-        graphics.drawRect(RectanglePositions[0], RectanglePositions[1], 50, 50);
-        serialRectangle = 0;
-    }
-    else
-    {
-        RectanglePositions[0] = 60 * serialRectangle + 50;
-        graphics.drawRect(RectanglePositions[0], RectanglePositions[1], 50, 50);
-        serialRectangle += 1;
-    }
-    graphics.endFill();
+//function createRectangle()
+//{
+//   // RectanglePositions[0] = 50;
+//    idColor = 1;
+//    graphics.beginFill(colors[idColor]);
+//    if (serialRectangle == 3)
+//    {
+//        RectanglePositions[0] = 50;
+//        RectanglePositions[1] += 60;
+//        graphics.drawRect(RectanglePositions[0], RectanglePositions[1], 50, 50);
+//        serialRectangle = 0;
+//    }
+//    else
+//    {
+//        RectanglePositions[0] = 60 * serialRectangle + 50;
+//        graphics.drawRect(RectanglePositions[0], RectanglePositions[1], 50, 50);
+//        serialRectangle += 1;
+//    }
+//    graphics.endFill();
 
-    app.stage.addChild(graphics);
-}
+//    app.stage.addChild(graphics);
+//}

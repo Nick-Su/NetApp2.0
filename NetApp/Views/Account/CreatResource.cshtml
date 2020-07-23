@@ -1,8 +1,27 @@
-﻿<div class="col-md-6">
+﻿
+<div class="col-md-6">
     <h2>Мне необходимо:</h2>
-    <iframe width="100%" height="50%" frameborder="no" src="/Projects/CreateResource"></iframe>
+    <iframe width="100%" height="50%" frameborder="no" src="/Projects/CreateNeedResource"></iframe>
 </div>
 <div class="col-md-6">
     <h2>Могу поделиться:</h2>
     <iframe width="100%" height="50%" frameborder="no" src="/Projects/CreateResource"></iframe>
 </div>
+<!--
+<script>
+    $(document).ready(function () {
+        window.addEventListener("message", function (e) {
+            if (e.data === "createResourse") {
+                $('#modDialog').modal('show');
+            }
+        },
+            false);
+    });
+
+    $(document).ajaxSuccess(function () {
+        $.get('Url.Action("CreateResourceItem", "Projects")', function (data) {
+                    $('#dialogContent').html(data);
+        });
+    });
+</script>
+    -->

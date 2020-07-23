@@ -674,6 +674,9 @@
     <Content Include="Scripts\pixi\projects.js" />
     <Content Include="Scripts\pixi\room.js" />
     <Content Include="Scripts\pixi\rooms.js" />
+    <Content Include="Scripts\pixi\showNeedResources.js" />
+    <Content Include="Scripts\pixi\showResources.js" />
+    <Content Include="Scripts\pixi\showResourcesNeed.js" />
     <Content Include="Scripts\pixi\simple.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -902,6 +905,9 @@
     <Content Include="Views\Games\Rooms.cshtml" />
     <Content Include="Views\Games\Room.cshtml" />
     <Content Include="Views\Games\play.cshtml" />
+    <Content Include="Views\Projects\CreateResourceItem.cshtml" />
+    <Content Include="Views\Projects\CreateResourceItemNeed.cshtml" />
+    <Content Include="Views\Projects\CreateNeedResource.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
