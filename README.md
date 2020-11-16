@@ -29,25 +29,25 @@ Stages 1-3 can be repeated several times depending on the initial settings made 
 ![Stage 1. The transition into groups](https://cloclo11.datacloudmail.ru/inline/7Yish4tqNGVH1AKXJb5LJumAa1XoB3pbPkESK3obqzCHpLf6exGap55yok1r9CkyPiH8tR/junkman2017@mail.ru/melt%20screen/transition.PNG)
 
 ## Stage 2 Participant introduction
-![Stage 2. Participant introduction](https://cloclo11.datacloudmail.ru/inline/7ZJ5d7ubKbEizZz6CpWgKuyphb5MmkG8zrAAyBcPnV2XC5eU1McyxgTFm5jpKXZLq83hk7/junkman2017@mail.ru/melt%20screen/intro.PNG)
+![Stage 2. Participant introduction](https://nick-su.github.io/images/melt/intro.PNG)
 
 ## Stage 3. Networking. Forming the project links.
-![stage 3. Froming the project links](https://cloclo23.datacloudmail.ru/inline/7XMW2J62cTcSv3PrBbKkicQ9WTLywHaqEN5AYKFLnez2rUYzmTH66qBTKydt7zCVbBeo9R/junkman2017@mail.ru/melt%20screen/netw.PNG)
+![stage 3. Froming the project links](https://nick-su.github.io/images/melt/netw.PNG)
 
 ## Stage 4. Networking Results
-![stage 4. Networking results](https://cloclo23.datacloudmail.ru/inline/7YLtZC4nfUGbo3hUWzRmXocfi5dZx7peT7RHPEKwvsFVRPJKGkwmM7pY7BfWSK9hRBBBUB/junkman2017@mail.ru/melt%20screen/networking-results.PNG)
+![stage 4. Networking results](https://nick-su.github.io/images/melt/networking-results.PNG)
 
 ## Visualisation of links
-![links visualisation](https://cloclo23.datacloudmail.ru/inline/7YkQQjPrnXhhyqvGys9KcrK9JoKSDdx3KHnPj1idvgaXFL9nPhxfkex27PQjZFpXCNLZmS/junkman2017@mail.ru/melt%20screen/project-graph.PNG)
+![links visualisation](https://nick-su.github.io/images/melt/project-graph.PNG)
 
 ## Project card
-![project card](https://cloclo23.datacloudmail.ru/inline/7YTEDNo5UvYQeFfnXXcqPTRCtKwK53TwEkuu8HcZ6KMbzKXQDsa2AaxaifUsR9QfVDdUwz/junkman2017@mail.ru/melt%20screen/add-project.PNG)
+![project card](https://nick-su.github.io/images/melt/add-project.PNG)
 
 ## The presenter creates an event
-![event creation](https://cloclo23.datacloudmail.ru/inline/81jUwr6WKrd17L7kgdgeZQ1yXFr778YN3n7kynxbw6rUQ9zXnhaHPANJXzZ3rThjgU5QzA/junkman2017@mail.ru/melt%20screen/create-networking.PNG)
+![event creation](https://nick-su.github.io/images/melt/create-networking.PNG)
 
 ## The presenter view. Activate event
-![activate event](https://cloclo23.datacloudmail.ru/inline/7XPsrPUeQ1xzbPcPVWJYXS4cM162jvdZQqSyP32wJmAfS8WvD6e1qACE353RxGhbCpvyYz/junkman2017@mail.ru/melt%20screen/run-netw.PNG)
+![activate event](https://nick-su.github.io/images/melt/run-netw.PNG)
 
 # Installation
 1. Download the repo archive
